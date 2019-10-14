@@ -1,0 +1,39 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Snakemake",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "source.python"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"explanation": "rule",
+					"match": "\\b(rule) (\\w+):",
+					"captures":{
+						"1": {
+							"name": "keyword.control.snakemake"
+						},
+						"2": {
+							"name": "entity.name.snakemake"
+						}
+					}
+				},
+				{
+					"name": "keyword.control.snakemake",
+					"match": "\\b(include|workdir)\\b"
+				},
+				{
+					"name": "keyword.control.snakemake.ruleparams",
+					"match": "\\b(input|output|params|log|benchmark|message|threads|resources|version|run|shell)\\b"
+				}
+			]
+		}
+	},
+	"scopeName": "source.python.snakemake"
+}

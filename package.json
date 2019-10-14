@@ -1,0 +1,26 @@
+{
+    "name": "vscode-snakemake",
+    "displayName": "Snakemake Language Support",
+    "description": "Basic support for Snakemake files",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.39.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "snakemake",
+            "aliases": ["Snakemake", "snakemake"],
+            "filenames": ["Snakefile"],
+            "extensions": [".smk"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "snakemake",
+            "scopeName": "source.python.snakemake",
+            "path": "./syntaxes/snakemake.tmLanguage.json"
+        }]
+    }
+}
