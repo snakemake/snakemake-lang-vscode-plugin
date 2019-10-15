@@ -4,6 +4,7 @@
     "description": "Basic language, syntax, and snippet support for Snakemake files",
     "version": "0.0.1",
     "publisher": "alping",
+    "repository": "https://gitlab.com/alping/vscode-snakemake",
     "engines": {
         "vscode": "^1.39.0"
     },
