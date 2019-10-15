@@ -23,7 +23,7 @@
         ["'", "'"]
     ],
     "indentationRules": {
-        "increaseIndentPattern": "^\\s*(?:(?:rule|async|class|def|elif|except|for|if|while|with)\\b.*|(input|output|params|log|benchmark|message|threads|resources|version|run|shell|else|finally|try))\\s*:\\s*(#.*)?$",
+        "increaseIndentPattern": "^\\s*(?:(?:rule|async|class|def|elif|except|for|if|while|with)\\b.*|(input|output|params|log|benchmark|message|threads|resources|version|run|shell|script|else|finally|try))\\s*:\\s*(#.*)?$",
         "decreaseIndentPattern": "^\\s*(?:else|finally|(?:elif|except)\\b.*)\\s*:\\s*(#.*)?$"
     }
 }

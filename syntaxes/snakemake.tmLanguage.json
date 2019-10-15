@@ -30,7 +30,7 @@
 				},
 				{
 					"name": "keyword.control.snakemake.ruleparams",
-					"match": "\\b(input|output|params|log|benchmark|message|threads|resources|version|run|shell)\\b"
+					"match": "\\b(input|output|params|log|benchmark|message|threads|resources|version|run|shell|script)\\b"
 				}
 			]
 		}
