@@ -21,6 +21,10 @@
             "language": "snakemake",
             "scopeName": "source.python.snakemake",
             "path": "./syntaxes/snakemake.tmLanguage.json"
+        }],
+        "snippets": [{
+              "language": "snakemake",
+              "path": "./snippets/snakemake.json"
         }]
     }
 }
