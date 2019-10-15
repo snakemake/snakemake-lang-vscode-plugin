@@ -13,24 +13,31 @@
 		"keywords": {
 			"patterns": [
 				{
-					"explanation": "rule",
-					"match": "\\b(rule)\\s*(\\w*)",
+					"match": "^\\s*(rule)\\s*(\\w*):",
 					"captures":{
 						"1": {
 							"name": "keyword.control.snakemake"
 						},
 						"2": {
-							"name": "entity.name.snakemake"
+							"name": "entity.name.function.snakemake"
 						}
 					}
 				},
 				{
-					"name": "keyword.control.snakemake",
-					"match": "\\b(include|workdir)\\b"
+					"match": "^\\s*(include|workdir):",
+					"captures":{
+						"1": {
+							"name": "keyword.control.snakemake"
+						}
+					}
 				},
 				{
-					"name": "keyword.control.snakemake.ruleparams",
-					"match": "\\b(input|output|params|log|benchmark|message|threads|resources|version|run|shell|script)\\b"
+					"match": "^\\s*(input|output|params|log|benchmark|message|threads|resources|version|run|shell|script):",
+					"captures":{
+						"1": {
+							"name": "keyword.control.snakemake.ruleparams"
+						}
+					}
 				}
 			]
 		}
