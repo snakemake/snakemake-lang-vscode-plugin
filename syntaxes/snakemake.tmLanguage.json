@@ -14,7 +14,7 @@
 			"patterns": [
 				{
 					"explanation": "rule",
-					"match": "\\b(rule) (\\w+):",
+					"match": "\\b(rule)\\s*(\\w*)",
 					"captures":{
 						"1": {
 							"name": "keyword.control.snakemake"
