@@ -15,7 +15,7 @@
             "aliases": ["Snakemake", "snakemake"],
             "filenames": ["Snakefile"],
             "extensions": [".smk"],
-            "configuration": "./language-configuration.json"
+            "configuration": "./languages/snakemake.json"
         }],
         "grammars": [{
             "language": "snakemake",
