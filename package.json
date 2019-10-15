@@ -3,6 +3,7 @@
     "displayName": "Snakemake Language",
     "description": "Basic language, syntax, and snippet support for Snakemake files",
     "version": "0.0.1",
+    "publisher": "alping",
     "engines": {
         "vscode": "^1.39.0"
     },
