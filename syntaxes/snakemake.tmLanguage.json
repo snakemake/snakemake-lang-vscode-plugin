@@ -48,7 +48,7 @@
 			"patterns": [
 				{
 					"match": "(expand|unpack|temp|protected)",
-					"name": "support.function.builtin.python"
+					"name": "support.function.builtin.snakemake"
 				}
 			]
 		}
