@@ -13,7 +13,7 @@
 		"keywords": {
 			"patterns": [
 				{
-					"match": "^\\s*(rule)\\s*(\\w*):",
+					"match": "^\\s*(rule)(?:\\s+(\\w+))?:",
 					"captures":{
 						"1": {
 							"name": "keyword.control.snakemake"
