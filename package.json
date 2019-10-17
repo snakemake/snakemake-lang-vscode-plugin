@@ -2,7 +2,7 @@
     "name": "vscode-snakemake",
     "displayName": "Snakemake Language",
     "description": "Basic language, syntax, and snippet support for Snakemake files",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "alping",
     "repository": "https://gitlab.com/alping/vscode-snakemake",
     "engines": {

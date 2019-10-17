@@ -2,20 +2,75 @@
 # https://snakemake.readthedocs.io/en/stable/tutorial/additional_features.html#modularization
 include: "path/to/other.snakefile"
 
+# Onstart, onsuccess and onerror handlers
+# https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#onstart-onsuccess-and-onerror-handlers
+onstart:
+    print("Workflow started")
+
+onsuccess:
+    print("Workflow finished, no errors")
+
+onerror:
+    print("An error occurred")
+
+# Handling Ambiguous Rules
+# https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#handling-ambiguous-rules
+ruleorder: rule1 > rule2 > rule3
+
+# Local Rules
+# https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#local-rules
+localrules: all, foo
+
+# Standard Configuration
+# https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html#standard-configuration
+configfile: "path/to/config.json
+
+# Sub-Workflows
+# https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#sub-workflows
+subworkflow otherworkflow:
+    workdir:
+        "../path/to/otherworkflow"
+    snakefile:
+        "../path/to/otherworkflow/Snakefile"
+    configfile:
+        "path/to/custom_configfile.yaml"
+
+rule a:
+    input:
+        otherworkflow("test.txt")
+    output: ...
+    shell:  ...
+
+# Data-dependent conditional execution
+# https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#data-dependent-conditional-execution
+checkpoint somestep:
+    input:
+        "samples/{sample}.txt"
+    output:
+        "somestep/{sample}.txt"
+    shell:
+        "somecommand {input} > {output}"
+
 # General reference
 rule reference_rule:
     input:
         "input/main_input.csv",
+        ancient("path/to/inputfile"),
         expand("input/sample_input_{sample}.csv"], sample=range(10))
     output:
         "output/main_output.csv",
+        directory("path/to/outputdir"),
         protected("output/protected_output.csv"),
         temp("output/temp_output.csv"),
+        pipe("test.{i}.txt"),
         expand("output/sample_output_{sample}.csv"], sample=range(10))
     conda:
         "envs/environment.yml"
     params:
         threads = "4"
+    priority: 50
+    shadow: "shallow"
+    group: "mygroup"
     shell:
         "fastqc -o data/fastqc -t {params.threads} {input}"
 
@@ -77,3 +132,24 @@ rule:
     input: unpack(myfunc)
     output: "someoutput.{token}.txt"
     shell: "..."
+
+# Flag Files
+# https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#flag-files
+rule mytask:
+    output: touch("mytask.done")
+    shell: "mycommand ..."
+
+# Common-Workflow-Language (CWL) support
+# https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#common-workflow-language-cwl-support
+rule samtools_sort:
+    input:
+        input="mapped/{sample}.bam"
+    output:
+        output_name="mapped/{sample}.sorted.bam"
+    params:
+        threads=lambda wildcards, threads: threads,
+        memory="4G"
+    threads: 8
+    cwl:
+        "https://github.com/common-workflow-language/workflows/blob/"
+        "fb406c95/tools/samtools-sort.cwl"

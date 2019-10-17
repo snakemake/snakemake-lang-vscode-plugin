@@ -16,7 +16,7 @@
 		"keywords": {
 			"patterns": [
 				{
-					"match": "^\\s*(rule)(?:\\s+(\\w+))?:",
+					"match": "^\\s*(rule|subworkflow|checkpoint)(?:\\s+(\\w+))?:",
 					"captures":{
 						"1": {
 							"name": "keyword.control.snakemake"
@@ -27,7 +27,7 @@
 					}
 				},
 				{
-					"match": "^\\s*(include|workdir):",
+					"match": "^\\s*(include|configfile|snakefile|workdir|ruleorder|localrules|onsuccess|onerror|onstart):",
 					"captures":{
 						"1": {
 							"name": "keyword.control.snakemake"
@@ -35,7 +35,7 @@
 					}
 				},
 				{
-					"match": "^\\s*(input|output|params|log|benchmark|message|threads|resources|version|run|shell|script|conda|wildcard_constraints|wrapper):",
+					"match": "^\\s*(input|output|params|priority|shadow|group|log|benchmark|message|threads|resources|version|run|shell|script|cwl|conda|wildcard_constraints|wrapper):",
 					"captures":{
 						"1": {
 							"name": "keyword.control.snakemake.ruleparams"
@@ -47,7 +47,7 @@
 		"functions": {
 			"patterns": [
 				{
-					"match": "(expand|unpack|temp|protected)",
+					"match": "(expand|unpack|ancient|directory|temp|protected|touch|pipe)",
 					"name": "support.function.builtin.snakemake"
 				}
 			]
