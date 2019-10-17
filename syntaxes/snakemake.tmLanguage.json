@@ -6,6 +6,9 @@
 			"include": "#keywords"
 		},
 		{
+			"include": "#functions"
+		},
+		{
 			"include": "source.python"
 		}
 	],
@@ -32,12 +35,20 @@
 					}
 				},
 				{
-					"match": "^\\s*(input|output|params|log|benchmark|message|threads|resources|version|run|shell|script):",
+					"match": "^\\s*(input|output|params|log|benchmark|message|threads|resources|version|run|shell|script|conda|wildcard_constraints|wrapper):",
 					"captures":{
 						"1": {
 							"name": "keyword.control.snakemake.ruleparams"
 						}
 					}
+				}
+			]
+		},
+		"functions": {
+			"patterns": [
+				{
+					"match": "(expand|unpack|temp|protected)",
+					"name": "support.function.builtin.python"
 				}
 			]
 		}
