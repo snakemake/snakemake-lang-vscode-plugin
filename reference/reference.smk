@@ -71,7 +71,7 @@ rule bwa_mem:
 # Input Functions and unpack()
 # https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#input-functions-and-unpack
 def myfunc(wildcards):
-    return { 'foo': '{wildcards.token}.txt'.format(wildcards=wildcards)
+    return { 'foo': '{wildcards.token}.txt'.format(wildcards=wildcards) }
 
 rule:
     input: unpack(myfunc)

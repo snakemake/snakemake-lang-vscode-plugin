@@ -14,10 +14,6 @@ Feedback, suggestions, and contributions are very welcome!
 - Language rules based on Python with added Snakemake grammar
 - Rule snippet
 
-## Known issues
-
-- Stops working after python function definition
-
 ## TODO
 
 - [ ] Identify Snakemake string substitutions (e.g. `"command {input} > {output}"`)
