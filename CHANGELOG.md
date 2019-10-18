@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.0.5
+
+- New keyword: singularity
+- Added example image to README
+
 ## 0.0.4
 
 - Fixed faulty Rule snippet

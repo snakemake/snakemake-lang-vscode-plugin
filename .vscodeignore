@@ -4,3 +4,4 @@
 reference/**
 node_modules/**
 src/**
+package-lock.json
