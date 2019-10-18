@@ -29,7 +29,9 @@ repository:
     match: >
       (?x)
         ^\s* # Leading whitespace
-        (rule|subworkflow|checkpoint) # Keywords
+        (
+          rule|subworkflow|checkpoint
+        ) # Keywords
         (?:\s+(\w+))? # Optional rule name
         : # Ending in colon
     captures:
@@ -41,9 +43,9 @@ repository:
       (?x)
         ^\s* # Leading whitespace
         (
-          input|output|params|priority|shadow|group|log|
-          benchmark|message|threads|resources|version|run|
-          shell|script|cwl|conda|wildcard_constraints|wrapper
+          input|output|params|priority|shadow|group|log|benchmark|
+          message|threads|resources|version|run|shell|script|cwl|
+          conda|singularity|wildcard_constraints|wrapper
         ) # Keywords
         : # Ending in colon
     captures:

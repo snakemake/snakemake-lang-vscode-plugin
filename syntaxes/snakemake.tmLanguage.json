@@ -32,7 +32,7 @@
       }
     },
     "rules": {
-      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (rule|subworkflow|checkpoint) # Keywords\n  (?:\\s+(\\w+))? # Optional rule name\n  : # Ending in colon\n",
+      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (\n    rule|subworkflow|checkpoint\n  ) # Keywords\n  (?:\\s+(\\w+))? # Optional rule name\n  : # Ending in colon\n",
       "captures": {
         "1": {
           "name": "keyword.control.snakemake"
@@ -43,7 +43,7 @@
       }
     },
     "ruleparams": {
-      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (\n    input|output|params|priority|shadow|group|log|\n    benchmark|message|threads|resources|version|run|\n    shell|script|cwl|conda|wildcard_constraints|wrapper\n  ) # Keywords\n  : # Ending in colon\n",
+      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (\n    input|output|params|priority|shadow|group|log|benchmark|\n    message|threads|resources|version|run|shell|script|cwl|\n    conda|singularity|wildcard_constraints|wrapper\n  ) # Keywords\n  : # Ending in colon\n",
       "captures": {
         "1": {
           "name": "keyword.control.snakemake.ruleparam"
