@@ -4,10 +4,11 @@ scopeName: source.python.snakemake
 fileTypes: [Snakefile, smk]
 
 patterns:
-  - include: "#configs"
-  - include: "#rules"
-  - include: "#ruleparams"
-  - include: "#functions"
+  - include: '#configs'
+  - include: '#rules'
+  - include: '#ruleparams'
+  - include: '#functions'
+  # - include: '#snakestrings'
   - include: source.python
 
 repository:
@@ -57,3 +58,31 @@ repository:
         ) # Keywords
     captures:
       '1': {name: support.function.builtin.snakemake}
+
+  # snakestrings:
+  #   name: string.quoted.snakemake
+  #   begin: >
+  #     (?x)
+  #       \s*
+  #       # (?:\()
+  #       (['"])
+  #   end: >
+  #     (?x)
+  #       (\1)
+  #   beginCaptures:
+  #     '1': {name: punctuation.definition.string.begin.snakemake}
+  #   endCaptures:
+  #     '1': {name: punctuation.definition.string.end.snakemake}
+  #   # patterns:
+  #   #   - include: "snakestring-sub"
+
+  # snakestrings-sub:
+  #   name: constant.character.format.placeholder.other.snakemake
+  #   begin: >
+  #     (?x)
+  #       \b
+  #       {
+  #   end: >
+  #     (?x)
+  #       }
+  #       \b
