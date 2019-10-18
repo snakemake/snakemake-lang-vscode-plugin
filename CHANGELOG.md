@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.4
+
+- Fixed faulty Rule snippet
+- Converted definitions to YAML source
+- Removed indentation rules until they work properly
+
 ## 0.0.3
 
 - New keywords: subworkflow, checkpoint, configfile, snakefile, ruleorder, localrules, onsuccess, onerror, onstart, priority, shadow, group, cwl
