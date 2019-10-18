@@ -5,7 +5,13 @@
     "version": "0.0.5",
     "publisher": "alping",
     "license": "MIT",
-    "repository": "https://gitlab.com/alping/vscode-snakemake",
+    "repository": {
+        "type": "git",
+        "url": "https://gitlab.com/alping/vscode-snakemake"
+    },
+    "bugs": {
+        "url": "https://gitlab.com/alping/vscode-snakemake/issues"
+    },
     "engines": {
         "vscode": "^1.39.0"
     },
