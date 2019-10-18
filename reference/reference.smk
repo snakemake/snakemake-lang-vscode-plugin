@@ -71,6 +71,8 @@ rule reference_rule:
     priority: 50
     shadow: "shallow"
     group: "mygroup"
+    singularity:
+        "docker://something/here"
     shell:
         "fastqc -o data/fastqc -t {params.threads} {input}"
 

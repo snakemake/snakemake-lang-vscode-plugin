@@ -14,6 +14,12 @@ Feedback, suggestions, and contributions are very welcome!
 - Language rules
 - Snippets
 
+## Example
+
+![Snakemake syntax highlighting example](misc/example.png)
+
+Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/tutorial/advanced.html#summary).
+
 ## Supported Syntax
 
 - **Keywords**
@@ -68,4 +74,4 @@ Feedback, suggestions, and contributions are very welcome!
 
 ## Snakemake Support for other Editors
 
-- [vim-snakemake](https://github.com/ivan-krukov/vim-snakemake)
+- [Vim](https://github.com/snakemake/snakemake/tree/master/misc/vim)
