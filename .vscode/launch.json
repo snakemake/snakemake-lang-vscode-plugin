@@ -13,7 +13,7 @@
             "args": [
                 "--extensionDevelopmentPath=${workspaceFolder}"
             ],
-            "preLaunchTask": "yaml_to_json"
+            "preLaunchTask": "build"
         }
     ]
 }

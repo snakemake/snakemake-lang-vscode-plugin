@@ -1,13 +1,12 @@
 {
-    "Snakemake Rule": {
-        "prefix": "smk-rule",
-        "description": "Snakemake rule",
-        "body": [
-            "rule ${1:name}:",
-            "\tinput: $2",
-            "\toutput: $3",
-            "\t${4|run,shell,script|}: $0",
-            "}"
-        ]
-    }
+  "Snakemake Rule": {
+    "prefix": "smk-rule",
+    "description": "Snakemake rule",
+    "body": [
+      "rule ${1:name}:",
+      "\tinput: $2",
+      "\toutput: $3",
+      "\t${4|run,shell,script|}: $0"
+    ]
+  }
 }

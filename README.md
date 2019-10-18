@@ -10,9 +10,9 @@ Feedback, suggestions, and contributions are very welcome!
 
 ## Features
 
-- Syntax definitions based on Python with added Snakemake grammar
-- Language rules based on Python with added Snakemake grammar
-- Rule snippet
+- Syntax definitions based on Python, with added Snakemake grammar
+- Language rules
+- Snippets
 
 ## Supported Syntax
 
@@ -59,15 +59,12 @@ Feedback, suggestions, and contributions are very welcome!
   - [x] protected
   - [x] touch
   - [x] pipe
-- **Other**
-  - [ ] String substitutions `"command {input}"`
-  - [ ] Wildcard constraints inside string substitutions `"{sample,[A-Za-z0-9]+}"`
 
-<!--
-- **Parameters**
-  - [ ] threads
-  - [ ] memory
--->
+## TODO
+
+- [ ] String substitutions `"command {input}"`
+- [ ] Wildcard constraints inside string substitutions `"{sample,[A-Za-z0-9]+}"`
+- [ ] Indentation rules
 
 ## Snakemake Support for other Editors
 

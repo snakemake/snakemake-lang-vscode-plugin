@@ -1,8 +1,24 @@
 {
     "version": "2.0.0",
-    "tasks": [{
-        "label": "yaml_to_json",
-        "command": "npx js-yaml syntaxes/src/snakemake.syntax.yaml > syntaxes/snakemake.tmLanguage.json",
-        "type": "shell"
-    }]
+    "tasks": [
+        {
+            "label": "syntax_build",
+            "command": "npx js-yaml syntaxes/src/snakemake.syntax.yaml > syntaxes/snakemake.tmLanguage.json",
+            "type": "shell"
+        },
+        {
+            "label": "language_build",
+            "command": "npx js-yaml languages/src/snakemake.language.yaml > languages/snakemake.json",
+            "type": "shell"
+        },
+        {
+            "label": "snippets_build",
+            "command": "npx js-yaml snippets/src/snakemake.snippets.yaml > snippets/snakemake.json",
+            "type": "shell"
+        },
+        {
+            "label": "build",
+            "dependsOn": ["syntax_build", "language_build", "snippets_build"]
+        }
+    ]
 }
