@@ -1,57 +1,62 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Snakemake",
-	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#functions"
-		},
-		{
-			"include": "source.python"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [
-				{
-					"match": "^\\s*(rule|subworkflow|checkpoint)(?:\\s+(\\w+))?:",
-					"captures":{
-						"1": {
-							"name": "keyword.control.snakemake"
-						},
-						"2": {
-							"name": "entity.name.function.snakemake"
-						}
-					}
-				},
-				{
-					"match": "^\\s*(include|configfile|snakefile|workdir|ruleorder|localrules|onsuccess|onerror|onstart):",
-					"captures":{
-						"1": {
-							"name": "keyword.control.snakemake"
-						}
-					}
-				},
-				{
-					"match": "^\\s*(input|output|params|priority|shadow|group|log|benchmark|message|threads|resources|version|run|shell|script|cwl|conda|wildcard_constraints|wrapper):",
-					"captures":{
-						"1": {
-							"name": "keyword.control.snakemake.ruleparams"
-						}
-					}
-				}
-			]
-		},
-		"functions": {
-			"patterns": [
-				{
-					"match": "(expand|unpack|ancient|directory|temp|protected|touch|pipe)",
-					"name": "support.function.builtin.snakemake"
-				}
-			]
-		}
-	},
-	"scopeName": "source.python.snakemake"
+  "name": "Snakemake",
+  "scopeName": "source.python.snakemake",
+  "fileTypes": [
+    "Snakefile",
+    "smk"
+  ],
+  "patterns": [
+    {
+      "include": "#configs"
+    },
+    {
+      "include": "#rules"
+    },
+    {
+      "include": "#ruleparams"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "source.python"
+    }
+  ],
+  "repository": {
+    "configs": {
+      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (\n    include|configfile|snakefile|workdir|ruleorder|\n    localrules|onsuccess|onerror|onstart\n  ) # Keywords\n  : # Ending in colon\n",
+      "captures": {
+        "1": {
+          "name": "keyword.control.snakemake.config"
+        }
+      }
+    },
+    "rules": {
+      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (rule|subworkflow|checkpoint) # Keywords\n  (?:\\s+(\\w+))? # Optional rule name\n  : # Ending in colon\n",
+      "captures": {
+        "1": {
+          "name": "keyword.control.snakemake"
+        },
+        "2": {
+          "name": "entity.name.function.snakemake.rule"
+        }
+      }
+    },
+    "ruleparams": {
+      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (\n    input|output|params|priority|shadow|group|log|\n    benchmark|message|threads|resources|version|run|\n    shell|script|cwl|conda|wildcard_constraints|wrapper\n  ) # Keywords\n  : # Ending in colon\n",
+      "captures": {
+        "1": {
+          "name": "keyword.control.snakemake.ruleparam"
+        }
+      }
+    },
+    "functions": {
+      "match": "(?x)\n  (\n    expand|unpack|ancient|directory|\n    temp|protected|touch|pipe\n  ) # Keywords\n",
+      "captures": {
+        "1": {
+          "name": "support.function.builtin.snakemake"
+        }
+      }
+    }
+  }
 }

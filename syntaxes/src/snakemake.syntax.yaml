@@ -1,0 +1,59 @@
+---
+name: Snakemake
+scopeName: source.python.snakemake
+fileTypes: [Snakefile, smk]
+
+patterns:
+  - include: "#configs"
+  - include: "#rules"
+  - include: "#ruleparams"
+  - include: "#functions"
+  - include: source.python
+
+repository:
+
+  configs:
+    match: >
+      (?x)
+        ^\s* # Leading whitespace
+        (
+          include|configfile|snakefile|workdir|ruleorder|
+          localrules|onsuccess|onerror|onstart
+        ) # Keywords
+        : # Ending in colon
+    captures:
+      '1': {name: keyword.control.snakemake.config}
+
+  rules:
+    match: >
+      (?x)
+        ^\s* # Leading whitespace
+        (rule|subworkflow|checkpoint) # Keywords
+        (?:\s+(\w+))? # Optional rule name
+        : # Ending in colon
+    captures:
+      '1': {name: keyword.control.snakemake}
+      '2': {name: entity.name.function.snakemake.rule}
+
+  ruleparams:
+    match: >
+      (?x)
+        ^\s* # Leading whitespace
+        (
+          input|output|params|priority|shadow|group|log|
+          benchmark|message|threads|resources|version|run|
+          shell|script|cwl|conda|wildcard_constraints|wrapper
+        ) # Keywords
+        : # Ending in colon
+    captures:
+      '1': {name: keyword.control.snakemake.ruleparam}
+
+  functions:
+    match: >
+      (?x)
+        (
+          expand|unpack|ancient|directory|
+          temp|protected|touch|pipe
+        ) # Keywords
+    captures:
+      '1': {name: support.function.builtin.snakemake}

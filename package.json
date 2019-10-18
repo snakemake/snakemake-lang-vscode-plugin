@@ -4,6 +4,7 @@
     "description": "Basic language, syntax, and snippet support for Snakemake files",
     "version": "0.0.3",
     "publisher": "alping",
+    "license": "MIT",
     "repository": "https://gitlab.com/alping/vscode-snakemake",
     "engines": {
         "vscode": "^1.39.0"
@@ -12,21 +13,37 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "snakemake",
-            "aliases": ["Snakemake", "snakemake"],
-            "filenames": ["Snakefile"],
-            "extensions": [".smk"],
-            "configuration": "./languages/snakemake.json"
-        }],
-        "grammars": [{
-            "language": "snakemake",
-            "scopeName": "source.python.snakemake",
-            "path": "./syntaxes/snakemake.tmLanguage.json"
-        }],
-        "snippets": [{
-              "language": "snakemake",
-              "path": "./snippets/snakemake.json"
-        }]
+        "languages": [
+            {
+                "id": "snakemake",
+                "aliases": [
+                    "Snakemake",
+                    "snakemake"
+                ],
+                "filenames": [
+                    "Snakefile"
+                ],
+                "extensions": [
+                    ".smk"
+                ],
+                "configuration": "./languages/snakemake.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "snakemake",
+                "scopeName": "source.python.snakemake",
+                "path": "./syntaxes/snakemake.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "snakemake",
+                "path": "./snippets/snakemake.json"
+            }
+        ]
+    },
+    "devDependencies": {
+        "js-yaml": "^3.13.1"
     }
 }

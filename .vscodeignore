@@ -2,3 +2,5 @@
 .vscode-test/**
 .gitignore
 reference/**
+node_modules/**
+src/**
