@@ -1,0 +1,8 @@
+{
+    "version": "2.0.0",
+    "tasks": [{
+        "label": "yaml_to_json",
+        "command": "npx js-yaml syntaxes/src/snakemake.syntax.yaml > syntaxes/snakemake.tmLanguage.json",
+        "type": "shell"
+    }]
+}
