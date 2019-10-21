@@ -18,6 +18,11 @@ Feedback, suggestions, and contributions are very welcome!
 
 ![Snakemake syntax highlighting example](misc/example.png)
 
+<!--
+Needs to be published with:
+vsce publish --baseContentUrl https://gitlab.com/alping/vscode-snakemake/raw/master
+-->
+
 Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/tutorial/advanced.html#summary).
 
 ## Supported Syntax

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.6
+
+- Updated --baseContentUrl to get example image to work
+
 ## 0.0.5
 
 - New keyword: singularity
