@@ -27,67 +27,50 @@ Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en
 
 <details>
 
- <summary>Rule types</summary>
+<summary>Keywords and Functions</summary>
 
+- Rule types
+  - checkpoint
   - rule
   - subworkflow
-  - checkpoint
-
-</details>
-
-<details>
-
- <summary>Configs</summary>
-
-  - include
+- Configs
   - configfile
-  - snakefile
-  - workdir
-  - ruleorder
-  - onsuccess
+  - include
   - onerror
   - onstart
-
-</details>
-
-<details>
-
- <summary>Rule Parameters</summary>
-
+  - onsuccess
+  - ruleorder
+  - snakefile
+  - workdir
+- Rule Parameters
+  - benchmark
+  - conda
+  - cwl
+  - group
   - input
+  - log
+  - message
   - output
   - params
-  - log
   - priority
-  - shadow
-  - group
-  - benchmark
-  - message
-  - threads
   - resources
-  - version
   - run
-  - shell
   - script
-  - cwl
-  - conda
+  - shadow
+  - shell
+  - threads
+  - version
   - wildcard_constraints
   - wrapper
-
-</details>
-
-<details>
-
- <summary>Functions</summary>
-
-  - expand
-  - unpack
+- Functions
   - ancient
   - directory
-  - temp
-  - protected
-  - touch
+  - expand
   - pipe
+  - protected
+  - temp
+  - touch
+  - unpack
 
 </details>
 
