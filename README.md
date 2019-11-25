@@ -4,8 +4,6 @@ Provides basic language support and snippets for [Snakemake](https://snakemake.r
 
 This is an unofficial extension and I am not affiliated with the [Snakemake](https://snakemake.readthedocs.io) project, but since I use Snakemake daily (it is truly an excellent tool) I wanted better support for it in VSCode and in publishing this plugin I hope that others might get some value from it as well.
 
-This is still very much in alpha, so it's likely that not everything works.
-
 Feedback, suggestions, and contributions are very welcome!
 
 ## Features
@@ -27,55 +25,77 @@ Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en
 
 ## Supported Syntax
 
-- **Keywords**
-  <!-- Rule types -->
-  - [x] rule
-  - [x] subworkflow
-  - [x] checkpoint
-  <!-- Configs -->
-  - [x] include
-  - [x] configfile
-  - [x] snakefile
-  - [x] workdir
-  - [x] ruleorder
-  - [x] onsuccess
-  - [x] onerror
-  - [x] onstart
-  <!-- Rule Parameters -->
-  - [x] input
-  - [x] output
-  - [x] params
-  - [x] log
-  - [x] priority
-  - [x] shadow
-  - [x] group
-  - [x] benchmark
-  - [x] message
-  - [x] threads
-  - [x] resources
-  - [x] version
-  - [x] run
-  - [x] shell
-  - [x] script
-  - [x] cwl
-  - [x] conda
-  - [x] wildcard_constraints
-  - [x] wrapper
-- **Functions**
-  - [x] expand
-  - [x] unpack
-  - [x] ancient
-  - [x] directory
-  - [x] temp
-  - [x] protected
-  - [x] touch
-  - [x] pipe
+<details>
+
+ <summary>Rule types</summary>
+
+  - rule
+  - subworkflow
+  - checkpoint
+
+</details>
+
+<details>
+
+ <summary>Configs</summary>
+
+  - include
+  - configfile
+  - snakefile
+  - workdir
+  - ruleorder
+  - onsuccess
+  - onerror
+  - onstart
+
+</details>
+
+<details>
+
+ <summary>Rule Parameters</summary>
+
+  - input
+  - output
+  - params
+  - log
+  - priority
+  - shadow
+  - group
+  - benchmark
+  - message
+  - threads
+  - resources
+  - version
+  - run
+  - shell
+  - script
+  - cwl
+  - conda
+  - wildcard_constraints
+  - wrapper
+
+</details>
+
+<details>
+
+ <summary>Functions</summary>
+
+  - expand
+  - unpack
+  - ancient
+  - directory
+  - temp
+  - protected
+  - touch
+  - pipe
+
+</details>
 
 ## TODO
 
-- [ ] String substitutions `"command {input}"`
-- [ ] Wildcard constraints inside string substitutions `"{sample,[A-Za-z0-9]+}"`
 - [ ] Indentation rules
+- [ ] Recognize string substitutions `"command {input}"`
+- [ ] Recognize wildcard constraints inside string substitutions `"{sample,[A-Za-z0-9]+}"`
 
 ## Snakemake Support for other Editors
 
