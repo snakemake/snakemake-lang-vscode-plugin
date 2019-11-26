@@ -8,5 +8,15 @@
       "\toutput: $3",
       "\t${4|run,shell,script|}: $0"
     ]
+  },
+  "Snakemake Script Rule": {
+    "prefix": "smk-script",
+    "description": "Snakemake script rule",
+    "body": [
+      "rule ${1:name}:",
+      "\tinput: $2",
+      "\toutput: $3",
+      "\tscript: \"$0\""
+    ]
   }
 }

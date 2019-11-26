@@ -1,6 +1,6 @@
 # Snakemake Language Support
 
-Provides basic language support and snippets for [Snakemake](https://snakemake.readthedocs.io) files (Snakefile, *.smk).
+Provides basic language support for [Snakemake](https://snakemake.readthedocs.io) files (Snakefile, *.smk).
 
 This is an unofficial extension and I am not affiliated with the [Snakemake](https://snakemake.readthedocs.io) project, but since I use Snakemake daily (it is truly an excellent tool) I wanted better support for it in VSCode and in publishing this plugin I hope that others might get some value from it as well.
 
@@ -8,8 +8,8 @@ Feedback, suggestions, and contributions are very welcome!
 
 ## Features
 
-- Syntax definitions based on Python, with added Snakemake grammar
-- Language rules
+- Syntax definitions based on Python, with added Snakemake keywords
+- Language rules based on Python
 - Snippets
 
 ## Example
@@ -78,9 +78,9 @@ Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en
 
 ## TODO
 
-- [ ] Indentation rules
-- [ ] Recognize string substitutions `"command {input}"`
-- [ ] Recognize wildcard constraints inside string substitutions `"{sample,[A-Za-z0-9]+}"`
+- [ ] Indentation rules (really tricky for some reason)
+- [ ] Recognize string substitutions: `"command {input}"`
+- [ ] Recognize wildcard constraints inside string substitutions: `"{sample,[A-Za-z0-9]+}"`
 
 ## Snakemake Support for other Editors
 
