@@ -24,7 +24,7 @@
   ],
   "repository": {
     "configs": {
-      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (\n    include|configfile|snakefile|workdir|ruleorder|\n    localrules|onsuccess|onerror|onstart\n  ) # Keywords\n  : # Ending in colon\n",
+      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (configfile|include|localrules|onerror|onstart|onsuccess|ruleorder|snakefile|workdir) # Keywords\n  : # Ending in colon\n",
       "captures": {
         "1": {
           "name": "keyword.control.snakemake.config"
@@ -32,7 +32,7 @@
       }
     },
     "rules": {
-      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (\n    rule|subworkflow|checkpoint\n  ) # Keywords\n  (?:\\s+(\\w+))? # Optional rule name\n  : # Ending in colon\n",
+      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (checkpoint|rule|subworkflow) # Keywords\n  (?:\\s+(\\w+))? # Optional rule name\n  : # Ending in colon\n",
       "captures": {
         "1": {
           "name": "keyword.control.snakemake"
@@ -43,7 +43,7 @@
       }
     },
     "ruleparams": {
-      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (\n    input|output|params|priority|shadow|group|log|benchmark|\n    message|threads|resources|version|run|shell|script|cwl|\n    conda|singularity|wildcard_constraints|wrapper\n  ) # Keywords\n  : # Ending in colon\n",
+      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (benchmark|conda|cwl|group|input|log|message|output|params|priority|resources|run|script|shadow|shell|singularity|threads|version|wildcard_constraints|wrapper) # Keywords\n  : # Ending in colon\n",
       "captures": {
         "1": {
           "name": "keyword.control.snakemake.ruleparam"
@@ -51,7 +51,7 @@
       }
     },
     "functions": {
-      "match": "(?x)\n  (\n    expand|unpack|ancient|directory|\n    temp|protected|touch|pipe\n  ) # Keywords\n",
+      "match": "(ancient|directory|expand|pipe|protected|temp|touch|unpack)",
       "captures": {
         "1": {
           "name": "support.function.builtin.snakemake"

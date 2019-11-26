@@ -29,19 +29,20 @@ Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en
 
 <summary>Keywords and Functions</summary>
 
-- Rule types
-  - checkpoint
-  - rule
-  - subworkflow
-- Configs
+- Configurations
   - configfile
   - include
+  - localrules
   - onerror
   - onstart
   - onsuccess
   - ruleorder
   - snakefile
   - workdir
+- Rules
+  - checkpoint
+  - rule
+  - subworkflow
 - Rule Parameters
   - benchmark
   - conda
@@ -58,6 +59,7 @@ Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en
   - script
   - shadow
   - shell
+  - singularity
   - threads
   - version
   - wildcard_constraints

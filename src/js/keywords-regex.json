@@ -1,0 +1,6 @@
+{
+    "configs": "configfile|include|localrules|onerror|onstart|onsuccess|ruleorder|snakefile|workdir",
+    "rules": "checkpoint|rule|subworkflow",
+    "ruleparams": "benchmark|conda|cwl|group|input|log|message|output|params|priority|resources|run|script|shadow|shell|singularity|threads|version|wildcard_constraints|wrapper",
+    "functions": "ancient|directory|expand|pipe|protected|temp|touch|unpack"
+}
