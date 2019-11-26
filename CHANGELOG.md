@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.1.1 (2019-11-26)
+
+- Updated Changelog
+
+## 0.1.0 (2019-11-26)
+
+- Updated build process to use templating for the keyword regular expressions
+- Added script snippet
+- Bumped version number to 0.1.0 as the extension seems reasonably stable now
+
 ## 0.0.6 (2019-10-21)
 
 - Updated --baseContentUrl to get example image to work

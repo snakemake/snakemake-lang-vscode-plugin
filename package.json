@@ -2,7 +2,7 @@
     "name": "vscode-snakemake",
     "displayName": "Snakemake Language",
     "description": "Basic syntax, language, and snippet support for Snakemake files",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "publisher": "alping",
     "license": "MIT",
     "repository": {
