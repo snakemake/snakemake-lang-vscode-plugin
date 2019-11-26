@@ -8,6 +8,7 @@
         },
         {
             "label": "syntax_build",
+            "dependsOn": "regex_build",
             "command": "npx mustache src/js/keywords-regex.json src/yaml/snakemake.syntax.yaml | npx js-yaml > syntaxes/snakemake.tmLanguage.json",
             "type": "shell"
         },
