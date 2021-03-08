@@ -1,16 +1,16 @@
 {
-    "name": "vscode-snakemake",
+    "name": "snakemake-lang",
     "displayName": "Snakemake Language",
-    "description": "Basic syntax, language, and snippet support for Snakemake files",
+    "description": "Basic syntax, language, and snippet support for Snakefiles (Snakemake workflow definition files)",
     "version": "0.1.1",
-    "publisher": "alping",
+    "publisher": "snakemake",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://gitlab.com/alping/vscode-snakemake"
+        "url": "https://github.com/snakemake/snakemake-lang-vscode-plugin"
     },
     "bugs": {
-        "url": "https://gitlab.com/alping/vscode-snakemake/issues"
+        "url": "https://github.com/snakemake/snakemake-lang-vscode-plugin/issues"
     },
     "engines": {
         "vscode": "^1.39.0"
