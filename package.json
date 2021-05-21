@@ -2,7 +2,7 @@
     "name": "snakemake-lang",
     "displayName": "Snakemake Language",
     "description": "Basic syntax, language, and snippet support for Snakefiles (Snakemake workflow definition files)",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "publisher": "snakemake",
     "license": "MIT",
     "repository": {
