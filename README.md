@@ -1,10 +1,9 @@
 # Snakemake Language Support
 
 Provides basic language support for [Snakemake](https://snakemake.readthedocs.io) files (Snakefile, *.smk).
-
-This is an unofficial extension and I am not affiliated with the [Snakemake](https://snakemake.readthedocs.io) project, but since I use Snakemake daily (it is truly an excellent tool) I wanted better support for it in VSCode and in publishing this plugin I hope that others might get some value from it as well.
-
 Feedback, suggestions, and contributions are very welcome!
+
+This project has been started by Peter Alping, and can be considered a fork of [this repository](https://gitlab.com/alping/vscode-snakemake).
 
 ## Features
 
