@@ -1,5 +1,12 @@
 # Change Log
 
+### [0.1.7](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.1.6...v0.1.7) (2022-03-30)
+
+
+### Bug Fixes
+
+* add more rule keywords ([e99bc9c](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/e99bc9cff84d3c4f9045487a57e62aad26767a96))
+
 ## 0.1.1 (2019-11-26)
 
 - Updated Changelog
