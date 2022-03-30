@@ -1,5 +1,12 @@
 # Change Log
 
+### [0.1.8](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.1.7...v0.1.8) (2022-03-30)
+
+
+### Bug Fixes
+
+* adjusted release type ([8f15738](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/8f15738c3e54c3655a0a5a2c0099380b097ee76f))
+
 ### [0.1.7](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.1.6...v0.1.7) (2022-03-30)
 
 
