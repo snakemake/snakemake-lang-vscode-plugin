@@ -12,7 +12,7 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v3
         id: release
         with:
-          release-type: simple
+          release-type: node
           token: ${{ secrets.GITHUB_TOKEN }}
   
       - uses: actions/checkout@v2
