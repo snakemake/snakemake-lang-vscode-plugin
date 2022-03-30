@@ -36,6 +36,9 @@ ruleparams:
   - version
   - wildcard_constraints
   - wrapper
+  - default_target
+  - template_engine
+  - handover
 
 functions:
   - ancient
