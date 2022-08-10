@@ -43,7 +43,7 @@ repository:
       '1': {name: keyword.control.snakemake.ruleparam}
 
   functions:
-    match: ({{functions}})
+    match: \b({{functions}})\b
     captures:
       '1': {name: support.function.builtin.snakemake}
 
