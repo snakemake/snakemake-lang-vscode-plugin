@@ -31,7 +31,8 @@
                     "Snakefile"
                 ],
                 "extensions": [
-                    ".smk"
+                    ".smk",
+                    ".Snakefile"
                 ],
                 "configuration": "./languages/snakemake.json"
             }
