@@ -8,6 +8,10 @@ configs:
   - ruleorder
   - snakefile
   - workdir
+  - container
+  - containerized
+  - pepfile
+  - pepschema
 
 rules:
   - checkpoint
@@ -39,6 +43,8 @@ ruleparams:
   - default_target
   - template_engine
   - handover
+  - container
+  - containerized
 
 functions:
   - ancient
@@ -49,3 +55,4 @@ functions:
   - temp
   - touch
   - unpack
+  - report
