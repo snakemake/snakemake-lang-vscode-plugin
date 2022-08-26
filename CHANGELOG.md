@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.1.0](https://github.com/ftabaro/snakemake-lang-vscode-plugin/compare/v1.0.0...v1.1.0) (2022-08-26)
+
+
+### Features
+
+* Implement onEnterRules ([e77976f](https://github.com/ftabaro/snakemake-lang-vscode-plugin/commit/e77976ff72656fb1e72f026d93bc6368311d5662))
+
 ## 1.0.0 (2022-08-25)
 
 
