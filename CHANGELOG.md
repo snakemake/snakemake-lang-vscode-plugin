@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.2.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.1.8...v0.2.0) (2022-10-09)
+
+
+### Features
+
+* update keywords and implement autoindentation ([#17](https://github.com/snakemake/snakemake-lang-vscode-plugin/issues/17)) ([7762354](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/776235401264754bd14a16a944f70f0e45da1cda))
+
 ## [1.1.0](https://github.com/ftabaro/snakemake-lang-vscode-plugin/compare/v1.0.0...v1.1.0) (2022-08-26)
 
 
