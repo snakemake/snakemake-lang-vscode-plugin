@@ -13,6 +13,14 @@ onsuccess:
 onerror:
     print("An error occurred")
 
+# Containerization
+container: "docker://something/here"
+containerized: "docker://something/here"
+
+# Pep schema
+pepfile: "path/to/pepconfig.yaml"
+pepschema: "https://pepschema.org"
+
 # Handling Ambiguous Rules
 # https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#handling-ambiguous-rules
 ruleorder: rule1 > rule2 > rule3
@@ -63,7 +71,8 @@ rule reference_rule:
         protected("output/protected_output.csv"),
         temp("output/temp_output.csv"),
         pipe("test.{i}.txt"),
-        expand("output/sample_output_{sample}.csv"], sample=range(10))
+        expand("output/sample_output_{sample}.csv"], sample=range(10)),
+        report("fig1.png", category="main category")
     conda:
         "envs/environment.yml"
     params:
@@ -72,6 +81,8 @@ rule reference_rule:
     shadow: "shallow"
     group: "mygroup"
     singularity:
+        "docker://something/here"
+    container:
         "docker://something/here"
     shell:
         "fastqc -o data/fastqc -t {params.threads} {input}"

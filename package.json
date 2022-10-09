@@ -3,7 +3,7 @@
     "displayName": "Snakemake Language",
     "icon": "logo-snake.png",
     "description": "Basic syntax, language, and snippet support for Snakefiles (Snakemake workflow definition files)",
-    "version": "0.1.8",
+    "version": "1.1.0",
     "publisher": "snakemake",
     "license": "MIT",
     "repository": {
@@ -14,7 +14,7 @@
         "url": "https://github.com/snakemake/snakemake-lang-vscode-plugin/issues"
     },
     "engines": {
-        "vscode": "^1.39.0"
+        "vscode": "^1.53.0"
     },
     "categories": [
         "Programming Languages"
@@ -31,7 +31,8 @@
                     "Snakefile"
                 ],
                 "extensions": [
-                    ".smk"
+                    ".smk",
+                    ".Snakefile"
                 ],
                 "configuration": "./languages/snakemake.json"
             }
