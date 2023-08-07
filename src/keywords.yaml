@@ -8,6 +8,10 @@ configs:
   - ruleorder
   - snakefile
   - workdir
+  - container
+  - containerized
+  - pepfile
+  - pepschema
 
 rules:
   - checkpoint
@@ -17,6 +21,7 @@ rules:
 ruleparams:
   - benchmark
   - conda
+  - container
   - cwl
   - group
   - input
@@ -39,6 +44,10 @@ ruleparams:
   - default_target
   - template_engine
   - handover
+  - container
+  - containerized
+  - localrule
+  - template_engine
 
 functions:
   - ancient
@@ -49,3 +58,4 @@ functions:
   - temp
   - touch
   - unpack
+  - report

@@ -34,3 +34,9 @@ surroundingPairs:
 # indentationRules:
 #   increaseIndentPattern: ^\s*(?:(?:rule|subworkflow|checkpoint|async|class|def|elif|except|for|if|while|with)\b.*|(input|output|params|priority|shadow|group|log|benchmark|message|threads|resources|version|run|shell|script|cwl|conda|singularity|wildcard_constraints|wrapper|else|finally|try))\s*:\s*(#.*)?$
 #   decreaseIndentPattern: ^\s*(?:else|finally|(?:elif|except)\b.*)\s*:\s*(#.*)?$
+
+onEnterRules:
+  - beforeText: >-
+      \s*(?:(?:rule|subworkflow|checkpoint|async|class|def|elif|except|for|if|while|with)\s.*|(?:input|output|params|priority|shadow|group|log|benchmark|message|threads|resources|version|run|shell|script|cwl|conda|singularity|wildcard_constraints|wrapper|else|finally|try))\s*:\s*(?:#.*)?$
+    action:
+      indent: indent
