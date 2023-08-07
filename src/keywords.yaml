@@ -21,6 +21,7 @@ rules:
 ruleparams:
   - benchmark
   - conda
+  - container
   - cwl
   - group
   - input
