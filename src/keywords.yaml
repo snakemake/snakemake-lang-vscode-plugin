@@ -21,6 +21,7 @@ rules:
 ruleparams:
   - benchmark
   - conda
+  - container
   - cwl
   - group
   - input
@@ -46,6 +47,7 @@ ruleparams:
   - container
   - containerized
   - localrule
+  - template_engine
 
 functions:
   - ancient
