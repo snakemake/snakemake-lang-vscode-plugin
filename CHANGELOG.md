@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.3.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.2.0...v0.3.0) (2023-08-07)
+
+
+### Features
+
+* add template_engine keyword ([16cd7d4](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/16cd7d4e02c4ac8685fec46c4d61f84ec90827d3))
+
 ## [0.2.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.1.8...v0.2.0) (2022-10-09)
 
 
