@@ -45,6 +45,7 @@ ruleparams:
   - handover
   - container
   - containerized
+  - template_engine
 
 functions:
   - ancient
