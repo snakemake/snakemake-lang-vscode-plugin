@@ -1,5 +1,18 @@
 # Change Log
 
+## [0.4.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.3.0...v0.4.0) (2023-08-07)
+
+
+### Features
+
+* Add new `localrule` ruleparam to keywords.yaml ([#24](https://github.com/snakemake/snakemake-lang-vscode-plugin/issues/24)) ([b046590](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/b046590fb61d50a176649a336e6037451e3ba055))
+* auto closing rule for triple double quotes ([0043178](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/004317818211ce74501de26bb9eb4a1d400795de))
+
+
+### Bug Fixes
+
+* restrictions to function keywords (word boundary) ([#16](https://github.com/snakemake/snakemake-lang-vscode-plugin/issues/16)) ([0043178](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/004317818211ce74501de26bb9eb4a1d400795de))
+
 ## [0.3.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.2.0...v0.3.0) (2023-08-07)
 
 
