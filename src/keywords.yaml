@@ -46,6 +46,7 @@ ruleparams:
   - handover
   - container
   - containerized
+  - localrule
   - template_engine
 
 functions:
