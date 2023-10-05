@@ -3,7 +3,7 @@
     "displayName": "Snakemake Language",
     "icon": "logo-snake.png",
     "description": "Basic syntax, language, and snippet support for Snakefiles (Snakemake workflow definition files)",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "publisher": "snakemake",
     "license": "MIT",
     "repository": {

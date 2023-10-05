@@ -8,7 +8,7 @@ configs:
   - ruleorder
   - snakefile
   - workdir
-  - container
+  - envvars
   - containerized
   - pepfile
   - pepschema
