@@ -43,7 +43,7 @@
       }
     },
     "ruleparams": {
-      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (benchmark|conda|container|shellcmd|name|norun|conda_env|container_img|is_containerized|env_modules|shadow_depth|docstring|notebook|template_engine|cache|path_modifier|handover|default_target|localrule|cwl|group|input|log|message|notebook|output|params|priority|resources|run|script|shadow|shell|singularity|threads|version|wildcard_constraints|wrapper|default_target|template_engine|handover) # Keywords\n  : # Ending in colon\n",
+      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (benchmark|conda|container|shellcmd|name|norun|conda_env|container_img|containerized|is_containerized|env_modules|shadow_depth|docstring|notebook|template_engine|cache|path_modifier|handover|default_target|localrule|cwl|group|input|log|message|notebook|output|params|priority|resources|run|script|shadow|shell|singularity|threads|version|wildcard_constraints|wrapper|default_target|template_engine|handover) # Keywords\n  : # Ending in colon\n",
       "captures": {
         "1": {
           "name": "keyword.control.snakemake.ruleparam"
