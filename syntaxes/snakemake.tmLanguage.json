@@ -43,7 +43,7 @@
       }
     },
     "ruleparams": {
-      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (benchmark|conda|cwl|group|input|log|message|notebook|output|params|priority|resources|run|script|shadow|shell|singularity|threads|version|wildcard_constraints|wrapper|default_target|template_engine|handover) # Keywords\n  : # Ending in colon\n",
+      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (benchmark|conda|cwl|group|input|log|message|notebook|output|params|priority|resources|retries|run|script|shadow|shell|singularity|threads|version|wildcard_constraints|wrapper|default_target|template_engine|handover) # Keywords\n  : # Ending in colon\n",
       "captures": {
         "1": {
           "name": "keyword.control.snakemake.ruleparam"
