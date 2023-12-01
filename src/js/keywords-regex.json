@@ -1,6 +1,6 @@
 {
     "configs": "configfile|container|containerized|include|localrules|onerror|onstart|onsuccess|pepfile|pepschema|ruleorder|snakefile|workdir",
     "rules": "checkpoint|rule|subworkflow",
-    "ruleparams": "benchmark|conda|container|containerizedgroup|cwl|default_target|handover|input|log|message|notebook|output|params|priority|resources|run|script|shadow|shell|singularity|template_engine|threads|version|wildcard_constraints|wrapper",
+    "ruleparams": "benchmark|conda|container|containerized|cwl|default_target|group|handover|input|log|message|notebook|output|params|priority|resources|run|script|shadow|shell|singularity|template_engine|threads|version|wildcard_constraints|wrapper",
     "functions": "ancient|directory|expand|pipe|protected|report|temp|touch|unpack"
 }
