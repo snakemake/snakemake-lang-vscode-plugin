@@ -44,6 +44,8 @@ ruleparams:
   - wildcard_constraints
   - wrapper
   - default_target
+  - pepfile
+  - pepschema
   - template_engine
   - handover
   - container
