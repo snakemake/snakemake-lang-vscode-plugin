@@ -1,6 +1,6 @@
 {
-    "configs": "configfile|envvars|module|scattergather|include|localrules|onerror|onstart|onsuccess|ruleorder|snakefile|workdir|containerized|pepfile|pepschema",
+    "configs": "configfile|envvars|module|scattergather|include|localrules|onerror|onstart|onsuccess|ruleorder|snakefile|workdir|container|containerized|pepfile|pepschema",
     "rules": "checkpoint|rule|subworkflow",
-    "ruleparams": "benchmark|conda|cwl|container|pepfile|pepschema|shellcmd|name|norun|conda_env|container_img|is_containerized|env_modules|shadow_depth|docstring|notebook|template_engine|cache|path_modifier|handover|default_target|localrule|group|input|log|message|notebook|output|params|priority|resources|run|script|shadow|shell|singularity|threads|version|wildcard_constraints|wrapper|default_target|template_engine|handover|container|containerized",
-    "functions": "ancient|directory|expand|pipe|protected|temp|touch|unpack|report"
+    "ruleparams": "benchmark|conda|cwl|container|pepfile|pepschema|shellcmd|name|norun|conda_env|container_img|is_containerized|env_modules|shadow_depth|docstring|notebook|template_engine|cache|path_modifier|handover|default_target|localrule|group|input|log|message|notebook|output|params|priority|resources|run|script|shadow|shell|singularity|threads|version|wildcard_constraints|wrapper|default_target|handover|container|containerized|retries",
+    "functions": "ancient|directory|expand|pipe|protected|report|temp|touch|unpack"
 }

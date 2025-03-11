@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.5.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.4.0...v0.5.0) (2024-10-20)
+
+
+### Features
+
+* Add `retries` keyword ([#31](https://github.com/snakemake/snakemake-lang-vscode-plugin/issues/31)) ([ea88750](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/ea887508abb81f5ed151da95e19358f8a2957e45))
+
 ## [0.4.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.3.0...v0.4.0) (2023-08-07)
 
 
