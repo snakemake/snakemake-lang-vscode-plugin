@@ -24,7 +24,7 @@
   ],
   "repository": {
     "configs": {
-      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (configfile|include|localrules|onerror|onstart|onsuccess|ruleorder|snakefile|workdir|pepfile|pepschema) # Keywords\n  : # Ending in colon\n",
+      "match": "(?x)\n  ^\\s* # Leading whitespace\n  (configfile|envvars|module|scattergather|include|localrules|onerror|onstart|onsuccess|ruleorder|snakefile|workdir|pepfile|pepschema) # Keywords\n  : # Ending in colon\n",
       "captures": {
         "1": {
           "name": "keyword.control.snakemake.config"

@@ -6,9 +6,11 @@ configs:
   - onstart
   - onsuccess
   - ruleorder
+  - scattergather
   - snakefile
   - workdir
-  - container
+  - envvars
+  - module
   - containerized
   - pepfile
   - pepschema
@@ -43,10 +45,27 @@ ruleparams:
   - wildcard_constraints
   - wrapper
   - default_target
+  - pepfile
+  - pepschema
   - template_engine
   - handover
   - container
   - containerized
+  - shellcmd
+  - name
+  - norun
+  - conda_env
+  - container_img
+  - is_containerized
+  - env_modules
+  - shadow_depth
+  - docstring
+  - notebook
+  - template_engine
+  - cache
+  - path_modifier
+  - handover
+  - default_target
   - localrule
   - template_engine
 

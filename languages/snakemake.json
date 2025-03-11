@@ -94,7 +94,7 @@
   ],
   "onEnterRules": [
     {
-      "beforeText": "\\s*(?:(?:rule|subworkflow|checkpoint|async|class|def|elif|except|for|if|while|with)\\s.*|(?:input|output|params|priority|shadow|group|log|benchmark|message|threads|resources|version|run|shell|script|cwl|conda|singularity|wildcard_constraints|wrapper|else|finally|try))\\s*:\\s*(?:#.*)?$",
+      "beforeText": "\\s*(?:(?:rule|subworkflow|checkpoint|async|class|def|elif|except|for|if|while|with)\\s.*|(?:input|output|params|priority|shadow|group|log|benchmark|message|threads|resources|version|run|shell|script|cwl|container|shellcmd|name|norun|conda_env|container_img|containerized|is_containerized|env_modules|shadow_depth|docstring|notebook|template_engine|cache|path_modifier|handover|default_target|localrule|pepfile|pepschema|conda|singularity|wildcard_constraints|wrapper|else|finally|try))\\s*:\\s*(?:#.*)?$",
       "action": {
         "indent": "indent"
       }
