@@ -50,9 +50,5 @@
                 "path": "./snippets/snakemake.json"
             }
         ]
-    },
-    "devDependencies": {
-        "js-yaml": "^3.13.1",
-        "mustache": "^3.1.0"
     }
 }
