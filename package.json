@@ -20,6 +20,14 @@
         "Programming Languages"
     ],
     "contributes": {
+        "configurationDefaults": {
+            "files.watcherExclude": {
+                "**/.snakemake/**": true
+            },
+            "search.exclude": {
+                "**/.snakemake": true
+            }
+        },
         "languages": [
             {
                 "id": "snakemake",
