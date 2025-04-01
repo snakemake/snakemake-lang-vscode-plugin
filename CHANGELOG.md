@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.5.2](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.5.1...v0.5.2) (2025-04-01)
+
+
+### Miscellaneous Chores
+
+* release 0.5.2 after updating vscode marketplace token ([ffa9524](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/ffa9524d9a98dd44c92e928a3a0b60a051e34d63))
+
 ## [0.5.1](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.5.0...v0.5.1) (2025-03-11)
 
 
