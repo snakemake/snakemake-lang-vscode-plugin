@@ -7,6 +7,15 @@
   ],
   "patterns": [
     {
+      "include": "#quotessmall"
+    },
+    {
+      "include": "#quotesmid"
+    },
+    {
+      "include": "#quotesbig"
+    },
+    {
       "include": "#configs"
     },
     {
@@ -23,9 +32,6 @@
     },
     {
       "include": "#userulesfrom"
-    },
-    {
-      "include": "#shell_block"
     },
     {
       "include": "#ruleparams"
@@ -56,6 +62,105 @@
     }
   ],
   "repository": {
+    "quotessmall": {
+      "begin": "\\(",
+      "end": "\\)",
+      "patterns": [
+        {
+          "include": "#quotessmall"
+        },
+        {
+          "include": "#quotesmid"
+        },
+        {
+          "include": "#quotesbig"
+        },
+        {
+          "include": "#classes"
+        },
+        {
+          "include": "#object"
+        },
+        {
+          "include": "#ruleargargs"
+        },
+        {
+          "include": "#ruleargs"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "source.python"
+        }
+      ]
+    },
+    "quotesmid": {
+      "begin": "\\[",
+      "end": "\\]",
+      "patterns": [
+        {
+          "include": "#quotessmall"
+        },
+        {
+          "include": "#quotesmid"
+        },
+        {
+          "include": "#quotesbig"
+        },
+        {
+          "include": "#classes"
+        },
+        {
+          "include": "#object"
+        },
+        {
+          "include": "#ruleargargs"
+        },
+        {
+          "include": "#ruleargs"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "source.python"
+        }
+      ]
+    },
+    "quotesbig": {
+      "begin": "\\{",
+      "end": "\\}",
+      "patterns": [
+        {
+          "include": "#quotessmall"
+        },
+        {
+          "include": "#quotesmid"
+        },
+        {
+          "include": "#quotesbig"
+        },
+        {
+          "include": "#classes"
+        },
+        {
+          "include": "#object"
+        },
+        {
+          "include": "#ruleargargs"
+        },
+        {
+          "include": "#ruleargs"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "source.python"
+        }
+      ]
+    },
     "configs": {
       "match": "(?x)\n  ^\\s* # Leading whitespace\n  (envvars|include|workdir|configfile|pepfile|pepschema|report|ruleorder|localrules|onsuccess|onerror|onstart|wildcard_constraints|singularity|container|containerized|conda|scattergather|inputflags|outputflags|storage|resource_scopes) # Keywords\n  : # Ending in colon\n",
       "captures": {
@@ -168,7 +273,7 @@
       }
     },
     "classes": {
-      "match": "(?:.*)(?<![_.])(?:\\(|\\[|\\{|\\s+|=|^)(Path|WorkflowError)(?!\\s*=)(?!\\w)",
+      "match": "\\b(Path|WorkflowError)(?!\\s*=)(?!\\w)",
       "captures": {
         "1": {
           "name": "entity.name.type.class.snakemake"
@@ -176,7 +281,7 @@
       }
     },
     "object": {
-      "match": "(?:.*)(?<![_.])(?:\\(|\\[|\\{|\\s+|=|^)(snakemake|rules|workflow|checkpoints|storage|access|config|scatter|gather)(?!\\s*=)(?!\\w)",
+      "match": "\\b(snakemake|rules|workflow|checkpoints|storage|access|scatter|gather)(?!\\s*=)(?!\\w)",
       "captures": {
         "1": {
           "name": "entity.name.type.class.snakemake"
@@ -184,7 +289,7 @@
       }
     },
     "ruleargargs": {
-      "match": "(?:.*)(?<![_.])(?:\\(|\\[|\\{|\\s+|=|^)(input|output|params|wildcards|threads|resources|log)\\s*\\.\\s*([A-Za-z_]+)(?!\\s*=)(?!\\w)",
+      "match": "\\b(input|output|params|wildcards|threads|resources|log|config)\\s*\\.\\s*([A-Za-z_]+)(?!\\s*=)(?!\\w)",
       "captures": {
         "1": {
           "name": "entity.name.variable.snakemake"
@@ -195,7 +300,7 @@
       }
     },
     "ruleargs": {
-      "match": "(?:.*)(?<![_.])(?:\\(|\\[|\\{|\\s+|=|^)(input|output|params|wildcards|threads|resources|log)(?!\\s*=)(?!\\w)",
+      "match": "\\b(input|output|params|wildcards|threads|resources|log)(?!\\s*=)(?!\\w)",
       "captures": {
         "1": {
           "name": "entity.name.variable.snakemake"
@@ -203,7 +308,7 @@
       }
     },
     "functions": {
-      "match": "(?:.*)(?<![_.])(?:\\(|\\[|\\{|\\s+|=|^)(shell|github|gitlab|gitfile|from_queue|protected|temp|temporary|ancient|directory|expand|glob_wildcards|flag|touch|unpack|local|pipe|service|repeat|report|multiext|ensure|update|before_update|lookup|evaluate|branch|collect|exists|subpath|parse_input|extract_checksum|flatten)(?!\\s*=)(?!\\w)",
+      "match": "\\b(shell|github|gitlab|gitfile|from_queue|protected|temp|temporary|ancient|directory|expand|glob_wildcards|flag|touch|unpack|local|pipe|service|repeat|report|multiext|ensure|update|before_update|lookup|evaluate|branch|collect|exists|subpath|parse_input|extract_checksum|flatten)(?!\\s*=)(?!\\w)",
       "captures": {
         "1": {
           "name": "support.function.builtin.snakemake"
