@@ -94,7 +94,7 @@
   ],
   "onEnterRules": [
     {
-      "beforeText": "\\s*(?:(?:rule|subworkflow|checkpoint|async|class|def|elif|except|for|if|while|with)\\s.*|(?:input|output|params|priority|shadow|group|log|benchmark|message|threads|resources|version|run|shell|script|cwl|container|shellcmd|name|norun|conda_env|container_img|containerized|is_containerized|env_modules|shadow_depth|docstring|notebook|template_engine|cache|path_modifier|handover|default_target|localrule|pepfile|pepschema|conda|singularity|wildcard_constraints|wrapper|else|finally|try))\\s*:\\s*(?:#.*)?$",
+      "beforeText": "\\s*(?:(?:checkpoint|rule|module|subworkflow|async|class|def|elif|except|for|if|while|with)\\s.*|(?:envvars|include|workdir|configfile|pepfile|pepschema|report|ruleorder|localrules|onsuccess|onerror|onstart|wildcard_constraints|singularity|container|containerized|conda|scattergather|inputflags|outputflags|storage|resource_scopes|name|input|output|params|threads|resources|retries|priority|log|message|benchmark|envmodules|shadow|group|cache|handover|default_target|localrule|version|run|shell|script|notebook|wrapper|template_engine|cwl|snakefile|meta_wrapper|config|skip_validation|replace_prefix|prefix|else|finally|try))\\s*:\\s*(?:#.*)?$",
       "action": {
         "indent": "indent"
       }

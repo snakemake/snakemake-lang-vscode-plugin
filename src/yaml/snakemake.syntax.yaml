@@ -4,15 +4,66 @@ scopeName: source.python.snakemake
 fileTypes: [Snakefile, smk]
 
 patterns:
-  - include: '#configs'
-  - include: '#rules'
-  - include: '#ruleparams'
-  - include: '#functions'
+  - include: "#quotessmall"
+  - include: "#quotesmid"
+  - include: "#quotesbig"
+  - include: "#configs"
+  - include: "#rules"
+  - include: "#modules"
+  - include: "#useruleas"
+  - include: "#userulefromas"
+  - include: "#userulesfrom"
+  - include: "#ruleparams"
+  - include: "#rulerunparams"
+  - include: "#moduleparams"
+  - include: "#classes"
+  - include: "#object"
+  - include: "#ruleargargs"
+  - include: "#ruleargs"
+  - include: "#functions"
   # - include: '#snakestrings'
   - include: source.python
 
 repository:
-
+  quotessmall:
+    begin: \(
+    end: \)
+    patterns:
+      - include: "#quotessmall"
+      - include: "#quotesmid"
+      - include: "#quotesbig"
+      - include: "#classes"
+      - include: "#object"
+      - include: "#ruleargargs"
+      - include: "#ruleargs"
+      - include: "#functions"
+      - include: source.python
+  quotesmid:
+    begin: \[
+    end: \]
+    patterns:
+      - include: "#quotessmall"
+      - include: "#quotesmid"
+      - include: "#quotesbig"
+      - include: "#classes"
+      - include: "#object"
+      - include: "#ruleargargs"
+      - include: "#ruleargs"
+      - include: "#functions"
+      - include: source.python
+  quotesbig:
+    begin: \{
+    end: \}
+    patterns:
+      - include: "#quotessmall"
+      - include: "#quotesmid"
+      - include: "#quotesbig"
+      - include: "#classes"
+      - include: "#object"
+      - include: "#ruleargargs"
+      - include: "#ruleargs"
+      - include: "#functions"
+      - include: source.python
   configs:
     match: >
       (?x)
@@ -20,7 +71,7 @@ repository:
         ({{configs}}) # Keywords
         : # Ending in colon
     captures:
-      '1': {name: keyword.control.snakemake.config}
+      "1": { name: keyword.control.snakemake.config }
 
   rules:
     match: >
@@ -30,8 +81,53 @@ repository:
         (?:\s+(\w+))? # Optional rule name
         : # Ending in colon
     captures:
-      '1': {name: keyword.control.snakemake}
-      '2': {name: entity.name.function.snakemake.rule}
+      "1": { name: keyword.control.snakemake }
+      "2": { name: entity.name.function.snakemake.rule }
+
+  modules:
+    match: >
+      (?x)
+        ^\s* # Leading whitespace
+        ({{modules}}) # Keywords
+        (?:\s+(\w+))? # Optional rule name
+        : # Ending in colon
+    captures:
+      "1": { name: keyword.control.snakemake }
+      "2": { name: entity.name.type.snakemake.rule }
+
+  useruleas:
+    match: >
+      (?x)
+        \b(use\s+rule)\s+(\w+)\s+(as)\s+(\w+)\s+(with)
+        : # Ending in colon
+    captures:
+      "1": { name: keyword.control.snakemake }
+      "2": { name: entity.name.function.snakemake.rule }
+      "3": { name: keyword.control.snakemake }
+      "4": { name: entity.name.function.snakemake.rule }
+      "5": { name: keyword.control.snakemake }
+
+  userulesfromas:
+    match: >
+      (?x)
+        \b(use\s+rule)\s+(\w+|\w+\*|\*)\s+(from)\s+(\w+)\s+(as)\s+(\w+|\w+\*)
+    captures:
+      "1": { name: keyword.control.snakemake }
+      "2": { name: entity.name.function.snakemake.rule }
+      "3": { name: keyword.control.snakemake }
+      "4": { name: entity.name.type.snakemake.rule }
+      "5": { name: keyword.control.snakemake }
+      "6": { name: entity.name.function.snakemake.rule }
+
+  userulesfrom:
+    match: >
+      (?x)
+        \b(use\s+rule)\s+(\w+|\w+\*|\*)\s+(from)\s+(\w+)
+    captures:
+      "1": { name: keyword.control.snakemake }
+      "2": { name: entity.name.function.snakemake.rule }
+      "3": { name: keyword.control.snakemake }
+      "4": { name: entity.name.type.snakemake.rule }
 
   ruleparams:
     match: >
@@ -40,37 +136,53 @@ repository:
         ({{ruleparams}}) # Keywords
         : # Ending in colon
     captures:
-      '1': {name: keyword.control.snakemake.ruleparam}
+      "1": { name: keyword.control.snakemake.ruleparam }
+
+  rulerunparams:
+    match: >
+      (?x)
+        ^\s* # Leading whitespace
+        ({{rulerunparams}}) # Keywords
+        : # Ending in colon
+    captures:
+      "1": { name: keyword.control.snakemake.rulerunparam }
+  moduleparams:
+    match: >
+      (?x)
+        ^\s* # Leading whitespace
+        ({{moduleparams}}) # Keywords
+        : # Ending in colon
+    captures:
+      "1": { name: keyword.control.snakemake.moduleparam }
+
+  classes:
+    match: \b({{classes}})\b(?!\s*=)
+    captures:
+      "1": { name: entity.name.type.class.snakemake }
+
+  objects:
+    match: \b({{objects}})\b(?!\s*=)
+    captures:
+      "1": { name: entity.name.type.class.snakemake }
+
+  ruleargargs:
+    match: \b({{ruleargs}})\s*\.\s*([A-Za-z_]+)\b(?!\s*=)
+    captures:
+      "1": { name: entity.name.variable.snakemake }
+      "2": { name: entity.name.variable.snakemake }
+
+  ruleargs:
+    match: \b({{ruleargs}})\b(?!\s*=)
+    captures:
+      "1": { name: entity.name.variable.snakemake }
 
   functions:
-    match: \b({{functions}})\b
+    match: \b({{functions}})\b(?!\s*=)
     captures:
-      '1': {name: support.function.builtin.snakemake}
+      "1": { name: support.function.builtin.snakemake }
 
-  # snakestrings:
-  #   name: string.quoted.snakemake
-  #   begin: >
-  #     (?x)
-  #       \s*
-  #       # (?:\()
-  #       (['"])
-  #   end: >
-  #     (?x)
-  #       (\1)
-  #   beginCaptures:
-  #     '1': {name: punctuation.definition.string.begin.snakemake}
-  #   endCaptures:
-  #     '1': {name: punctuation.definition.string.end.snakemake}
-  #   # patterns:
-  #   #   - include: "snakestring-sub"
-
-  # snakestrings-sub:
-  #   name: constant.character.format.placeholder.other.snakemake
-  #   begin: >
-  #     (?x)
-  #       \b
-  #       {
-  #   end: >
-  #     (?x)
-  #       }
-  #       \b
+  shell_block:
+    begin: ^\s+shell:\s*\n*\s*\"\"\"
+    end: \"\"\"
+    patterns:
+      - include: source.shell

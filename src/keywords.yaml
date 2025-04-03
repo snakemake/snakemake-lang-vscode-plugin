@@ -1,81 +1,143 @@
 configs:
-  - configfile
-  - include
-  - localrules
-  - onerror
-  - onstart
-  - onsuccess
-  - ruleorder
-  - scattergather
-  - snakefile
-  - workdir
   - envvars
-  - module
-  - containerized
+  - include
+  - workdir
+  - configfile
   - pepfile
   - pepschema
+  - report
+  - ruleorder
+  - localrules
+  - onsuccess
+  - onerror
+  - onstart
+  - wildcard_constraints
+  - singularity
+  - container
+  - containerized
+  - conda
+  - scattergather
+  - inputflags
+  - outputflags
+  - storage
+  - resource_scopes
 
 rules:
   - checkpoint
   - rule
+
+modules:
+  - module
   - subworkflow
 
 ruleparams:
-  - benchmark
-  - conda
-  - container
-  - cwl
-  - group
+  - name
   - input
-  - log
-  - message
-  - notebook
   - output
   - params
-  - priority
+  - threads
   - resources
   - retries
-  - run
-  - script
-  - shadow
-  - shell
+  - priority
+  - log
+  - message
+  - benchmark
+  - conda
   - singularity
-  - threads
-  - version
-  - wildcard_constraints
-  - wrapper
-  - default_target
-  - pepfile
-  - pepschema
-  - template_engine
-  - handover
   - container
   - containerized
-  - shellcmd
-  - name
-  - norun
-  - conda_env
-  - container_img
-  - is_containerized
-  - env_modules
-  - shadow_depth
-  - docstring
-  - notebook
-  - template_engine
+  - envmodules
+  - wildcard_constraints
+  - shadow
+  - group
   - cache
-  - path_modifier
   - handover
   - default_target
   - localrule
+  - version
+  - container_img
+  - is_containerized
+  - shellcmd
+  - norun
+  - conda_env
+  - env_modules
+  - shadow_depth
+  - docstring
+  - path_modifier
+
+rulerunparams:
+  - run
+  - shell
+  - script
+  - notebook
+  - wrapper
   - template_engine
+  - cwl
+
+moduleparams:
+  - name
+  - snakefile
+  - meta_wrapper
+  - config
+  - skip_validation
+  - replace_prefix
+  - prefix
+
+classes:
+  - Path
+  - WorkflowError
+
+objects:
+  - snakemake
+  - rules
+  - workflow
+  - checkpoints
+  - storage
+  - access
+  - scatter
+  - gather
+
+ruleargs:
+  - input
+  - output
+  - params
+  - wildcards
+  - threads
+  - resources
+  - log
+  - config
 
 functions:
+  - shell
+  - github
+  - gitlab
+  - gitfile
+  - from_queue
+  - protected
+  - temp
+  - temporary
   - ancient
   - directory
   - expand
-  - pipe
-  - protected
-  - temp
+  - glob_wildcards
+  - flag
   - touch
   - unpack
+  - local
+  - pipe
+  - service
+  - repeat
   - report
+  - multiext
+  - ensure
+  - update
+  - before_update
+  - lookup
+  - evaluate
+  - branch
+  - collect
+  - exists
+  - subpath
+  - parse_input
+  - extract_checksum
+  - flatten

@@ -1,6 +1,12 @@
 {
-    "configs": "configfile|envvars|module|scattergather|include|localrules|onerror|onstart|onsuccess|ruleorder|snakefile|workdir|container|containerized|pepfile|pepschema",
-    "rules": "checkpoint|rule|subworkflow",
-    "ruleparams": "benchmark|conda|cwl|container|pepfile|pepschema|shellcmd|name|norun|conda_env|container_img|is_containerized|env_modules|shadow_depth|docstring|notebook|template_engine|cache|path_modifier|handover|default_target|localrule|group|input|log|message|notebook|output|params|priority|resources|run|script|shadow|shell|singularity|threads|version|wildcard_constraints|wrapper|default_target|handover|container|containerized|retries",
-    "functions": "ancient|directory|expand|pipe|protected|report|temp|touch|unpack"
+    "configs": "envvars|include|workdir|configfile|pepfile|pepschema|report|ruleorder|localrules|onsuccess|onerror|onstart|wildcard_constraints|singularity|container|containerized|conda|scattergather|inputflags|outputflags|storage|resource_scopes",
+    "rules": "checkpoint|rule",
+    "modules": "module|subworkflow",
+    "ruleparams": "name|input|output|params|threads|resources|retries|priority|log|message|benchmark|conda|singularity|container|containerized|envmodules|wildcard_constraints|shadow|group|cache|handover|default_target|localrule|version|container_img|is_containerized|shellcmd|norun|conda_env|env_modules|shadow_depth|docstring|path_modifier",
+    "rulerunparams": "run|shell|script|notebook|wrapper|template_engine|cwl",
+    "moduleparams": "name|snakefile|meta_wrapper|config|skip_validation|replace_prefix|prefix",
+    "classes": "Path|WorkflowError",
+    "objects": "snakemake|rules|workflow|checkpoints|storage|access|scatter|gather",
+    "ruleargs": "input|output|params|wildcards|threads|resources|log|config",
+    "functions": "shell|github|gitlab|gitfile|from_queue|protected|temp|temporary|ancient|directory|expand|glob_wildcards|flag|touch|unpack|local|pipe|service|repeat|report|multiext|ensure|update|before_update|lookup|evaluate|branch|collect|exists|subpath|parse_input|extract_checksum|flatten"
 }
