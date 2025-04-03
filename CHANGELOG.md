@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.6.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.5.2...v0.6.0) (2025-04-03)
+
+
+### Features
+
+* update more keywords and highlighting ([#42](https://github.com/snakemake/snakemake-lang-vscode-plugin/issues/42)) ([8d455d5](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/8d455d5a5c18c3270d329c62ecf753e681c91ea3))
+
 ## [0.5.2](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.5.1...v0.5.2) (2025-04-01)
 
 
