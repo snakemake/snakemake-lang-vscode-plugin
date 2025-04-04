@@ -4,9 +4,6 @@ scopeName: source.python.snakemake
 fileTypes: [Snakefile, smk]
 
 patterns:
-  - include: "#quotessmall"
-  - include: "#quotesmid"
-  - include: "#quotesbig"
   - include: "#configs"
   - include: "#rules"
   - include: "#modules"
@@ -16,54 +13,87 @@ patterns:
   - include: "#ruleparams"
   - include: "#rulerunparams"
   - include: "#moduleparams"
-  - include: "#classes"
-  - include: "#object"
-  - include: "#ruleargargs"
-  - include: "#ruleargs"
-  - include: "#functions"
+  - include: "#function-call"
+  - include: "#quoteall"
+  - include: "#snakemakenames"
   # - include: '#snakestrings'
   - include: source.python
 
 repository:
+  function-call:
+    name: meta.function-call.snakemake
+    comment: Regular function call of the type "name(args)" in snakemake
+    begin: |
+      (?x)
+        \b(?=
+          ([A-Za-z_][A-Za-z0-9_]*) \s* (\()
+        )
+    end: (\))
+    endCaptures:
+      "1": { name: punctuation.definition.arguments.end.python }
+    patterns:
+      - include: "source.python#special-variables"
+      - include: "source.python#function-name"
+      - include: "#function-arguments"
+
+  function-arguments:
+    begin: (\()
+    end: (?=\))(?!\)\s*\()
+    beginCaptures:
+      "1": { name: punctuation.definition.arguments.begin.python }
+    contentName: meta.function-call.arguments.python
+    patterns:
+      - name: punctuation.separator.arguments.python
+        match: (,)
+      - match: |
+          (?x)
+            (?:(?<=[,(])|^) \s* (\*{1,2})
+        captures:
+          "1": { name: keyword.operator.unpacking.arguments.python }
+      - include: "#snakemakenames"
+      - include: "source.python#lambda-incomplete"
+      - include: "source.python#illegal-names"
+      - match: '\b([[:alpha:]_]\w*)\s*(=)(?!=)'
+        captures:
+          "1": { name: variable.parameter.function-call.python }
+          "2": { name: keyword.operator.assignment.python }
+
+      - name: keyword.operator.assignment.python
+        match: =(?!=)
+      - include: "#snakemakenames"
+      - include: "source.python#expression"
+      - match: \s*(\))\s*(\()
+        captures:
+          "1": { name: punctuation.definition.arguments.end.python }
+          "2": { name: punctuation.definition.arguments.begin.python }
+
+  quoteall:
+    patterns:
+      - include: "#quotessmall"
+      - include: "#quotesmid"
+      - include: "#quotesbig"
   quotessmall:
     begin: \(
     end: \)
     patterns:
-      - include: "#quotessmall"
-      - include: "#quotesmid"
-      - include: "#quotesbig"
-      - include: "#classes"
-      - include: "#object"
-      - include: "#ruleargargs"
-      - include: "#ruleargs"
-      - include: "#functions"
-      - include: source.python
+      - include: "#quoteall"
+      - include: "#snakemakenames"
+      - include: "source.python"
   quotesmid:
     begin: \[
     end: \]
     patterns:
-      - include: "#quotessmall"
-      - include: "#quotesmid"
-      - include: "#quotesbig"
-      - include: "#classes"
-      - include: "#object"
-      - include: "#ruleargargs"
-      - include: "#ruleargs"
-      - include: "#functions"
-      - include: source.python
+      - include: "#quoteall"
+      - include: "#snakemakenames"
+      - include: "source.python"
   quotesbig:
     begin: \{
     end: \}
     patterns:
-      - include: "#quotessmall"
-      - include: "#quotesmid"
-      - include: "#quotesbig"
-      - include: "#classes"
-      - include: "#object"
-      - include: "#ruleargargs"
-      - include: "#ruleargs"
-      - include: "#functions"
-      - include: source.python
+      - include: "#quoteall"
+      - include: "#snakemakenames"
+      - include: "source.python"
+
   configs:
     match: >
       (?x)
@@ -155,10 +185,25 @@ repository:
     captures:
       "1": { name: keyword.control.snakemake.moduleparam }
 
+  snakemakenames:
+    patterns:
+      - include: "#classes"
+      - include: "#rulesrefernce"
+      - include: "#objects"
+      - include: "#ruleargargs"
+      - include: "#ruleargs"
+      - include: "#functions"
+
   classes:
     match: \b({{classes}})\b(?!\s*=)
     captures:
       "1": { name: entity.name.type.class.snakemake }
+
+  rulesrefernce:
+    match: \b({{rules | checkpoints}})\s*\.\s*([A-Za-z_]+)\b(?!\s*=)
+    captures:
+      "1": { name: entity.name.type.class.snakemake }
+      "2": { name: entity.name.variable.snakemake }
 
   objects:
     match: \b({{objects}})\b(?!\s*=)
