@@ -40,9 +40,9 @@ Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en
     include: "workflow/report.smk"
     ```
 
-- Rules and Modules
+- [Rules and Modules](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#snakefiles-and-rules)
   - `rule <rulename>:` defines a rule with its parameters, followed by an indented body
-  - `checkpoint <rulename>:` is a special type of `rule` that allows dynamic determination of workflow steps based on its output.
+  - [`checkpoint <rulename>:`] is a special type of `rule` that allows dynamic determination of workflow steps based on its output.
   - `module <modulename>:` declares a module repository from which rules can be imported
   - `subworkflow` is now deprecated
 
@@ -52,12 +52,12 @@ Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en
     - run
     - shell
     - script
-    - notebook
-    - wrapper
+    - [`notebook`](https://snakemake.readthedocs.io/en/stable/tutorial/interaction_visualization_reporting/tutorial.html#tutorial-interaction-visualization-and-reporting-with-snakemake)
+    - [`wrapper`](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#wrappers)
     - template_engine
-    - cwl
+    - [`cwl`](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#common-workflow-language-cwl-support)
 
-- Module Parameters:
+- [Module Parameters](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#modules):
   - Define where and how to import rules when using the `module` directive.
   - Example:
     ```snakemake
@@ -78,11 +78,10 @@ Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en
     - snakemake
     - `rules`: reference rules via `rules.<rulename>`
     - workflow
-    - `checkpoints`: access outputs of checkpoint rules
-    - storage
-    - access
-    - scatter
-    - gather
+    - `checkpoints`: access outputs of [checkpoint](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#data-dependent-conditional-execution) rules
+    - [`storage`](https://snakemake.readthedocs.io/en/stable/snakefiles/storage.html#storage-support)
+    - [`access`](https://snakemake.readthedocs.io/en/stable/snakefiles/storage.html#access-pattern-annotation)
+    - [`scatter` and `gather`](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#defining-scatter-gather-processes)
 
 - Job Parameters:
   - These parameters are only available during job execution and should be used within `run` or `shell` blocks
@@ -93,10 +92,10 @@ Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en
     - threads
     - resources
     - log
-    - config
+  - [`config`](https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html#configuration) is a dict that contains the configuration values and can be accessed everywhere
 
 - Functions:
-  - Built-in helper functions are available for use without needing to import them
+  - Various [built-in helper functions](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#helpers-for-defining-rules) are available for use without needing to import them
 
 </details>
 
