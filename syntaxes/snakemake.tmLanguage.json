@@ -7,6 +7,9 @@
   ],
   "patterns": [
     {
+      "include": "#snakestrings"
+    },
+    {
       "include": "#configs"
     },
     {
@@ -50,7 +53,7 @@
     "function-call": {
       "name": "meta.function-call.snakemake",
       "comment": "Regular function call of the type \"name(args)\" in snakemake",
-      "begin": "(?x)\n  \\b(?=\n    ([A-Za-z_][A-Za-z0-9_]*) \\s* (\\()\n  )\n",
+      "begin": "(?x)\n  \\b(?=\n    ([[:alpha:]_]\\w*) \\s* (\\()\n  )\n",
       "end": "(\\))",
       "endCaptures": {
         "1": {
@@ -58,6 +61,12 @@
         }
       },
       "patterns": [
+        {
+          "include": "#classes"
+        },
+        {
+          "include": "#functions"
+        },
         {
           "include": "source.python#special-variables"
         },
@@ -117,6 +126,9 @@
         },
         {
           "include": "#snakemakenames"
+        },
+        {
+          "include": "#quoteall"
         },
         {
           "include": "source.python#expression"
@@ -243,7 +255,7 @@
       }
     },
     "userulesfromas": {
-      "match": "(?x)\n  \\b(use\\s+rule)\\s+(\\w+|\\w+\\*|\\*)\\s+(from)\\s+(\\w+)\\s+(as)\\s+(\\w+|\\w+\\*)\n",
+      "match": "(?x)\n  \\b(use\\s+rule)\\s+(\\w+|\\w+\\*|\\*)\\s+(from)\\s+(\\w+)\\s+(as)\\s+(\\w+|\\w+\\*)\n  # may end with a \"with:\"\", but that can be caught by other rules\n",
       "captures": {
         "1": {
           "name": "keyword.control.snakemake"
@@ -266,7 +278,7 @@
       }
     },
     "userulesfrom": {
-      "match": "(?x)\n  \\b(use\\s+rule)\\s+(\\w+|\\w+\\*|\\*)\\s+(from)\\s+(\\w+)\n",
+      "match": "\\b(use\\s+rule)\\s+(\\w+|\\w+\\*|\\*)\\s+(from)\\s+(\\w+)",
       "captures": {
         "1": {
           "name": "keyword.control.snakemake"
@@ -337,7 +349,8 @@
       }
     },
     "rulesrefernce": {
-      "match": "\\b()\\s*\\.\\s*([A-Za-z_]+)\\b(?!\\s*=)",
+      "name": "meta.class.snakemake",
+      "match": "\\b(rules|checkpoints)\\s*\\.\\s*([A-Za-z_]+)\\b(?!\\s*=)",
       "captures": {
         "1": {
           "name": "entity.name.type.class.snakemake"
@@ -348,6 +361,7 @@
       }
     },
     "objects": {
+      "name": "meta.c",
       "match": "\\b(snakemake|rules|workflow|checkpoints|storage|access|scatter|gather)\\b(?!\\s*=)",
       "captures": {
         "1": {
@@ -356,10 +370,11 @@
       }
     },
     "ruleargargs": {
+      "name": "meta.args.snakemake",
       "match": "\\b(input|output|params|wildcards|threads|resources|log|config)\\s*\\.\\s*([A-Za-z_]+)\\b(?!\\s*=)",
       "captures": {
         "1": {
-          "name": "entity.name.variable.snakemake"
+          "name": "constant.language.snakemake"
         },
         "2": {
           "name": "entity.name.variable.snakemake"
@@ -370,7 +385,7 @@
       "match": "\\b(input|output|params|wildcards|threads|resources|log|config)\\b(?!\\s*=)",
       "captures": {
         "1": {
-          "name": "entity.name.variable.snakemake"
+          "name": "constant.language.snakemake"
         }
       }
     },
@@ -382,9 +397,61 @@
         }
       }
     },
-    "shell_block": {
-      "begin": "^\\s+shell:\\s*\\n*\\s*\\\"\\\"\\\"",
-      "end": "\\\"\\\"\\\"",
+    "snakestrings": {
+      "name": "string.quoted.docstring.snakemake",
+      "begin": "\\s+(\\'\\'\\'|\\\"\\\"\\\"|\\'|\\\")",
+      "end": "(\\1)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.begin.python"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.python"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.python#string-single-bad-brace1-formatting-unicode"
+        },
+        {
+          "include": "source.python#string-single-bad-brace2-formatting-unicode"
+        },
+        {
+          "include": "source.python#string-unicode-guts"
+        }
+      ]
+    },
+    "shellzone": {
+      "name": "meta.embedded.shell.snakemake",
+      "begin": "^(\\s+)\\s(shell)\\s*:",
+      "beginCaptures": {
+        "2": {
+          "name": "entity.name.type.class.snakemake"
+        }
+      },
+      "while": "^(?:(\\1.*)|)$",
+      "patterns": [
+        {
+          "include": "#snakeshellstrings"
+        }
+      ]
+    },
+    "snakeshellstrings": {
+      "name": "string.quoted.docstring.snakemake.shell",
+      "begin": "\\s+(\\'\\'\\'|\\\"\\\"\\\")",
+      "end": "(\\1)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.begin.python"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.python"
+        }
+      },
       "patterns": [
         {
           "include": "source.shell"
