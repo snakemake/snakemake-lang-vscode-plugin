@@ -10,6 +10,9 @@
       "include": "#snakestrings"
     },
     {
+      "include": "#shellzone"
+    },
+    {
       "include": "#configs"
     },
     {
@@ -420,6 +423,176 @@
         },
         {
           "include": "source.python#string-unicode-guts"
+        },
+        {
+          "include": "#quotesbig"
+        }
+      ]
+    },
+    "shell_initial_context": {
+      "name": "string.quoted.docstring.shell.snakemake",
+      "patterns": [
+        {
+          "include": "#quotesbig"
+        },
+        {
+          "include": "source.shell#comment"
+        },
+        {
+          "include": "source.shell#pipeline"
+        },
+        {
+          "include": "source.shell#normal_statement_seperator"
+        },
+        {
+          "include": "source.shell#logical_expression_double"
+        },
+        {
+          "include": "source.shell#logical_expression_single"
+        },
+        {
+          "include": "source.shell#assignment_statement"
+        },
+        {
+          "include": "source.shell#case_statement"
+        },
+        {
+          "include": "source.shell#for_statement"
+        },
+        {
+          "include": "source.shell#loop"
+        },
+        {
+          "include": "source.shell#function_definition"
+        },
+        {
+          "include": "source.shell#line_continuation"
+        },
+        {
+          "include": "source.shell#arithmetic_double"
+        },
+        {
+          "include": "source.shell#misc_ranges"
+        },
+        {
+          "include": "source.shell#variable"
+        },
+        {
+          "include": "source.shell#interpolation"
+        },
+        {
+          "include": "source.shell#heredoc"
+        },
+        {
+          "include": "source.shell#herestring"
+        },
+        {
+          "include": "source.shell#redirection"
+        },
+        {
+          "include": "source.shell#pathname"
+        },
+        {
+          "include": "source.shell#floating_keyword"
+        },
+        {
+          "include": "source.shell#alias_statement"
+        },
+        {
+          "include": "source.shell#normal_statement"
+        },
+        {
+          "include": "#source.shell.string"
+        },
+        {
+          "include": "source.shell#support"
+        },
+        {
+          "name": null
+        }
+      ]
+    },
+    "source.shell.string": {
+      "name": "meta.embedded.shell.notpython.snakemake",
+      "patterns": [
+        {
+          "match": "\\\\",
+          "name": "constant.character.escape.shell"
+        },
+        {
+          "name": "string.quoted.single.shell",
+          "begin": "(?!\\'\\'\\')\\'",
+          "end": "\\'",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.shell"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.shell"
+            }
+          }
+        },
+        {
+          "name": "string.quoted.double.shell",
+          "begin": "\\$?(?!\"\"\")\"",
+          "end": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.shell"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.shell"
+            }
+          },
+          "patterns": [
+            {
+              "match": "\\\\[\\$\\n`\"\\\\]",
+              "name": "constant.character.escape.shell"
+            },
+            {
+              "include": "source.shell#variable"
+            },
+            {
+              "include": "source.shell#interpolation"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.dollar.shell",
+          "begin": "\\$'",
+          "end": "'",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.shell"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.shell"
+            }
+          },
+          "patterns": [
+            {
+              "name": "constant.character.escape.ansi-c.shell",
+              "match": "\\\\(?:a|b|e|f|n|r|t|v|\\\\|')"
+            },
+            {
+              "name": "constant.character.escape.octal.shell",
+              "match": "\\\\[0-9]{3}\""
+            },
+            {
+              "name": "constant.character.escape.hex.shell",
+              "match": "\\\\x[0-9a-fA-F]{2}\""
+            },
+            {
+              "name": "constant.character.escape.control-char.shell",
+              "match": "\\\\c.\""
+            }
+          ]
         }
       ]
     },
@@ -431,30 +604,10 @@
           "name": "entity.name.type.class.snakemake"
         }
       },
-      "while": "^(?:(\\1.*)|)$",
+      "while": "^(\\1|$)",
       "patterns": [
         {
-          "include": "#snakeshellstrings"
-        }
-      ]
-    },
-    "snakeshellstrings": {
-      "name": "string.quoted.docstring.snakemake.shell",
-      "begin": "\\s+(\\'\\'\\'|\\\"\\\"\\\")",
-      "end": "(\\1)",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.string.begin.python"
-        }
-      },
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.string.end.python"
-        }
-      },
-      "patterns": [
-        {
-          "include": "source.shell"
+          "include": "#shell_initial_context"
         }
       ]
     }
