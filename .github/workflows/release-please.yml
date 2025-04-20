@@ -25,7 +25,9 @@ jobs:
 
       - name: Install dependencies
         if: ${{ steps.release.outputs.release_created }}
-        run: npm ci
+        run:
+          npm install
+          npm ci
 
       - name: Build extension
         if: ${{ steps.release.outputs.release_created }}
