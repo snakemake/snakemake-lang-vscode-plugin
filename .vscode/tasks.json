@@ -23,8 +23,18 @@
             "type": "shell"
         },
         {
+            "label": "js_build",
+            "command": "npx node build.mjs",
+            "type": "shell"
+        },
+        {
             "label": "build",
-            "dependsOn": ["syntax_build", "language_build", "snippets_build"]
+            "dependsOn": [
+                "syntax_build",
+                "language_build",
+                "snippets_build",
+                "js_build"
+            ]
         }
     ]
 }

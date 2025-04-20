@@ -52,7 +52,22 @@
         ]
     },
     "devDependencies": {
+        "@types/node": "^22.14.1",
+        "@types/vscode": "^1.53.0",
+        "esbuild": "^0.25.2",
         "js-yaml": "^3.13.1",
         "mustache": "^3.1.0"
+    },
+    "main": "dist/extension.js",
+    "activationEvents": [
+        "onLanguage:snakemake"
+    ],
+    "scripts": {
+        "build": "node build.mjs",
+        "compile": "tsc",
+        "watch": "tsc --watch",
+        "package": "vsce package",
+        "prepublish": "npm run build",
+        "publish": "vsce publish"
     }
 }
