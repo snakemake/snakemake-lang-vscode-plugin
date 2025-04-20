@@ -4,15 +4,6 @@ import * as fs from 'fs';
 
 
 export function activate(context: vscode.ExtensionContext) {
-    context.subscriptions.push(
-        vscode.commands.registerCommand('extension.sayHello', function () {
-            // vscode.window.showErrorMessage('Snakemake语义高亮已激活2');
-            // const blocks_str = shellBlockManager.showBlocks().join('\n');
-
-            // vscode.window.showInformationMessage(`snakemake shell ranges: ${blocks_str}`);
-        })
-    );
-
     const snakemakeManager = new SnakemakeManager();
 
     context.subscriptions.push(
@@ -92,8 +83,8 @@ class SnakemakeManager {
                 continue;
             }
 
-            if (!line.trim() || line.trim().startsWith('#')) continue; // 跳过空行和注释
-            // 计算当前行的缩进
+            if (!line.trim() || line.trim().startsWith('#')) continue;
+
             const indentMatch = line.match(/^(\s*)[\S]/);
             const indent = indentMatch ? indentMatch[1].length : 0;
             if (indent <= state.current.indent) {
@@ -151,7 +142,7 @@ class SnakemakeManager {
                 const link = this.checkLinks(line, i, document.uri.fsPath)
                 if (link) {
                     links.push(link)
-                    // consumed the path, skip
+                    // check the file path just after the keyword
                     state.current.blockType = regexMatch[1]
                 }
             } else if (state.current.blockType === 'shell') {
@@ -173,7 +164,7 @@ class SnakemakeManager {
             blockStart: new vscode.Position(0, 0)
         },
         i = 0, line = '', shift = 0
-    ): boolean {
+    ) {
         while (state.shellBlock.delimiter) {
             const endDelimiterIndex = line.indexOf(state.shellBlock.delimiter, shift);
 
@@ -196,7 +187,6 @@ class SnakemakeManager {
                 state.shellBlock = { delimiter: "", content: [] };
             }
         }
-        return false
     }
 
     checkLinks(line: string, i: number, fsPath: string) {
