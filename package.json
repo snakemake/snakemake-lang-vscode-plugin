@@ -14,7 +14,8 @@
         "url": "https://github.com/snakemake/snakemake-lang-vscode-plugin/issues"
     },
     "engines": {
-        "vscode": "^1.53.0"
+        "vscode": "^1.53.0",
+        "node": ">=18"
     },
     "categories": [
         "Programming Languages"
@@ -52,7 +53,7 @@
         ]
     },
     "devDependencies": {
-        "@types/node": "^22.14.1",
+        "@types/node": "^14 || ^16 || ^18",
         "@types/vscode": "^1.53.0",
         "esbuild": "^0.25.2",
         "js-yaml": "^3.13.1",

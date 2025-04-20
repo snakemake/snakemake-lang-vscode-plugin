@@ -13,14 +13,16 @@ export function activate(context: vscode.ExtensionContext) {
         registerShellHoverProvider(snakemakeManager)
     );
 
-    vscode.languages.registerDocumentSymbolProvider(
-        { language: 'snakemake' },
-        {
-            provideDocumentSymbols(document: vscode.TextDocument) {
-                return snakemakeManager.getSymbols(document);
+    context.subscriptions.push(
+        vscode.languages.registerDocumentSymbolProvider(
+            { language: 'snakemake' },
+            {
+                provideDocumentSymbols(document: vscode.TextDocument) {
+                    return snakemakeManager.getSymbols(document);
+                }
             }
-        }
-    )
+        )
+    );
 
     context.subscriptions.push(
         vscode.languages.registerDocumentLinkProvider(
@@ -182,7 +184,8 @@ class SnakemakeManager {
             const newStartMatch = line.substring(newStart).match(/("""|''')/);
             if (newStartMatch) {
                 state.shellBlock = { delimiter: newStartMatch[0], content: [] };
-                state.blockStart = new vscode.Position(i, newStart + state.shellBlock.delimiter.length + newStartMatch.length);
+                const newDelimiterPos = line.indexOf(newStartMatch[0], newStart);
+                state.blockStart = new vscode.Position(i, newDelimiterPos + newStartMatch[0].length);
             } else {
                 state.shellBlock = { delimiter: "", content: [] };
             }
