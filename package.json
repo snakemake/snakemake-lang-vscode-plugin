@@ -14,7 +14,7 @@
         "url": "https://github.com/snakemake/snakemake-lang-vscode-plugin/issues"
     },
     "engines": {
-        "vscode": "^1.53.0",
+        "vscode": "^1.75.0",
         "node": ">=18"
     },
     "categories": [
@@ -60,12 +60,14 @@
         "mustache": "^3.1.0"
     },
     "main": "dist/extension.js",
-    "activationEvents": [
-        "onLanguage:snakemake"
-    ],
     "scripts": {
-        "build": "node build.mjs",
-        "compile": "tsc",
+        "clean": "rm -rf dist syntaxes languages snippets out",
+        "regex_build": "node src/js/build_regex.js src/keywords.yaml src/js/keywords-regex.json",
+        "syntax_build": "mkdir syntaxes && npm run regex_build && npx mustache src/js/keywords-regex.json src/yaml/snakemake.syntax.yaml | npx js-yaml > syntaxes/snakemake.tmLanguage.json",
+        "language_build": "mkdir languages && npx js-yaml src/yaml/snakemake.language.yaml > languages/snakemake.json",
+        "snippets_build": "mkdir snippets && npx js-yaml src/yaml/snakemake.snippets.yaml > snippets/snakemake.json",
+        "js_build": "node build.mjs",
+        "build": "npm run syntax_build && npm run language_build && npm run snippets_build && npm run js_build",
         "watch": "tsc --watch",
         "package": "vsce package",
         "prepublish": "npm run build",
