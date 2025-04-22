@@ -1,53 +1,22 @@
 ---
 scopeName: source.python.snakemake.keywords
 fileTypes: [Snakefile, smk]
-injectionSelector: L:source.python L:support.function.builtin.python, L:meta.function-call.arguments.python, L:meta.function-call.python, L:meta.member.access.python
+injectionSelector: L:source.python, L:support.function.builtin.python, L:meta.function-call.arguments.python, L:meta.function-call.python, L:meta.member.access.python
 
 patterns:
-  - include: "#quoteall"
-  - include: "#snakemakenames"
+  - include: "#classes"
+  - include: "#rules-reference"
+  - include: "#objects"
+  - include: "#job-params.variable"
+  - include: "#job-params"
+  - include: "#functions"
 
 repository:
-  quoteall:
-    patterns:
-      - include: "#quotessmall"
-      - include: "#quotesmid"
-      - include: "#quotesbig"
-  quotessmall:
-    begin: \(
-    end: \)
-    patterns:
-      - include: "#quoteall"
-      - include: "#snakemakenames"
-      - include: "source.python"
-  quotesmid:
-    begin: \[
-    end: \]
-    patterns:
-      - include: "#quoteall"
-      - include: "#snakemakenames"
-      - include: "source.python"
-  quotesbig:
-    begin: \{
-    end: \}
-    patterns:
-      - include: "#quoteall"
-      - include: "#snakemakenames"
-      - include: "source.python"
-
-  snakemakenames:
-    patterns:
-      - include: "#classes"
-      - include: "#rulesrefernce"
-      - include: "#objects"
-      - include: "#ruleargargs"
-      - include: "#ruleargs"
-      - include: "#functions"
   classes:
     match: \b({{classes}})\b(?!\s*=)
     captures:
       "1": { name: entity.name.type.class.snakemake }
-  rulesrefernce:
+  rules-reference:
     name: meta.class.snakemake
     match: \b(rules|checkpoints)\s*\.\s*([A-Za-z_]+)\b(?!\s*=)
     captures:
@@ -58,16 +27,16 @@ repository:
     match: \b({{objects}})\b(?!\s*=)
     captures:
       "1": { name: entity.name.type.class.snakemake }
-  ruleargargs:
+  job-params.variable:
     name: meta.args.snakemake
-    match: \b({{ruleargs}})\s*\.\s*([A-Za-z_]+)\b(?!\s*=)
+    match: \b({{jobparams}})\s*\.\s*([A-Za-z_]+)\b(?!\s*=)
     captures:
-      "1": { name: constant.language.snakemake }
+      "1": { name: constant.language.snakemake.job }
       "2": { name: entity.name.variable.snakemake }
-  ruleargs:
-    match: \b({{ruleargs}})\b(?!\s*=)
+  job-params:
+    match: \b({{jobparams}})\b(?!\s*=)
     captures:
-      "1": { name: constant.language.snakemake }
+      "1": { name: constant.language.snakemake.job }
   functions:
     match: \b({{functions}})\b(?!\s*=)
     captures:

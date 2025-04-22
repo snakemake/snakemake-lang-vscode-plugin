@@ -97,7 +97,7 @@ objects:
   - scatter
   - gather
 
-ruleargs:
+jobparams:
   - input
   - output
   - params
