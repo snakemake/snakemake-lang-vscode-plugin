@@ -1,7 +1,74 @@
 ---
 scopeName: source.python.snakemake.keywords
 fileTypes: [Snakefile, smk]
-injectionSelector: L:support.function.builtin.python, L:meta.function-call.arguments.python, L:meta.function-call.python, L:meta.member.access.python
+injectionSelector: L:source.python L:support.function.builtin.python, L:meta.function-call.arguments.python, L:meta.function-call.python, L:meta.member.access.python
 
 patterns:
-  - include: "source.python.snakemake#snakemakenames"
+  - include: "#quoteall"
+  - include: "#snakemakenames"
+
+repository:
+  quoteall:
+    patterns:
+      - include: "#quotessmall"
+      - include: "#quotesmid"
+      - include: "#quotesbig"
+  quotessmall:
+    begin: \(
+    end: \)
+    patterns:
+      - include: "#quoteall"
+      - include: "#snakemakenames"
+      - include: "source.python"
+  quotesmid:
+    begin: \[
+    end: \]
+    patterns:
+      - include: "#quoteall"
+      - include: "#snakemakenames"
+      - include: "source.python"
+  quotesbig:
+    begin: \{
+    end: \}
+    patterns:
+      - include: "#quoteall"
+      - include: "#snakemakenames"
+      - include: "source.python"
+
+  snakemakenames:
+    patterns:
+      - include: "#classes"
+      - include: "#rulesrefernce"
+      - include: "#objects"
+      - include: "#ruleargargs"
+      - include: "#ruleargs"
+      - include: "#functions"
+  classes:
+    match: \b({{classes}})\b(?!\s*=)
+    captures:
+      "1": { name: entity.name.type.class.snakemake }
+  rulesrefernce:
+    name: meta.class.snakemake
+    match: \b(rules|checkpoints)\s*\.\s*([A-Za-z_]+)\b(?!\s*=)
+    captures:
+      "1": { name: entity.name.type.class.snakemake }
+      "2": { name: entity.name.variable.snakemake }
+  objects:
+    name: meta.c
+    match: \b({{objects}})\b(?!\s*=)
+    captures:
+      "1": { name: entity.name.type.class.snakemake }
+  ruleargargs:
+    name: meta.args.snakemake
+    match: \b({{ruleargs}})\s*\.\s*([A-Za-z_]+)\b(?!\s*=)
+    captures:
+      "1": { name: constant.language.snakemake }
+      "2": { name: entity.name.variable.snakemake }
+  ruleargs:
+    match: \b({{ruleargs}})\b(?!\s*=)
+    captures:
+      "1": { name: constant.language.snakemake }
+  functions:
+    match: \b({{functions}})\b(?!\s*=)
+    captures:
+      "1": { name: support.function.builtin.snakemake }

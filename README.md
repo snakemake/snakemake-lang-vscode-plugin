@@ -101,8 +101,8 @@ Example taken from [Snakemake documentation](https://snakemake.readthedocs.io/en
 
 ## TODO
 
-- [ ] recognize files provided as string after `include:`, `conda`, `snakefile`, and allow quickly jumping to them
-- [ ] add bash-color to docstring in `shell:` block
+- [x] recognize files provided as string after `include:`, `conda`, `snakefile`, and allow quickly jumping to them
+- [x] add bash-color to docstring in `shell:` block
 - [ ] Indentation rules (really tricky for some reason)
 - [ ] Recognize wildcard constraints inside string substitutions: `"{sample,[A-Za-z0-9]+}"`
 

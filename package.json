@@ -49,7 +49,7 @@
                 "injectTo": [
                     "source.python"
                 ],
-                "path": "./snakemake-inject.tmLanguage.json"
+                "path": "./syntaxes/snakemake-inject.tmLanguage.json"
             }
         ],
         "snippets": [
