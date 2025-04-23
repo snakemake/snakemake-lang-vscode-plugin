@@ -1,7 +1,7 @@
 ---
 scopeName: source.python.snakemake.keywords
 fileTypes: [Snakefile, smk]
-injectionSelector: L:source.python, L:support.function.builtin.python, L:meta.function-call.arguments.python, L:meta.function-call.python, L:meta.member.access.python
+injectionSelector: L:source.python -comment -string, L:support.function.builtin.python, L:meta.function-call.arguments.python, L:meta.function-call.python, L:meta.member.access.python
 
 patterns:
   - include: "#classes"
