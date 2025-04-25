@@ -47,7 +47,7 @@
             {
                 "scopeName": "source.python.snakemake.keywords",
                 "injectTo": [
-                    "source.python"
+                    "source.python.snakemake"
                 ],
                 "path": "./syntaxes/snakemake-inject.tmLanguage.json"
             }
