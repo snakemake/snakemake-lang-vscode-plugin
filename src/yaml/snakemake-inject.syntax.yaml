@@ -1,11 +1,12 @@
 ---
 scopeName: source.python.snakemake.keywords
 fileTypes: [Snakefile, smk]
-injectionSelector: L:source.python -comment -string, L:meta.function-call.arguments.python -comment -string, L:meta.function-call.python -comment -string
+injectionSelector: L:source.python.snakemake -comment -string, L:meta.function-call.arguments.python -comment -string, L:meta.function-call.python -comment -string
 
 patterns:
   - include: "#classes"
   - include: "#rules-reference"
+  - include: "#checkpoints-reference"
   - include: "#objects"
   - include: "#job-params.variable"
   - include: "#job-params"
@@ -13,23 +14,30 @@ patterns:
 
 repository:
   classes:
-    match: \b({{classes}})\b(?!\s*=)
+    match: (?<![\w.])\b({{classes}})\b(?!\s*=)
     captures:
       "1": { name: entity.name.type.class.snakemake }
   rules-reference:
-    name: meta.class.snakemake
-    match: \b(rules|checkpoints)\s*\.\s*([A-Za-z_]+)\b(?!\s*=)
+    name: meta.rules-reference.snakemake
+    match: (?<![\w.])\b(rules)(?:\s*\.\s*({{legal-name}}))?\b
     captures:
       "1": { name: entity.name.type.class.snakemake }
       "2": { name: entity.name.variable.snakemake }
+  checkpoints-reference:
+    name: meta.checkpoints-reference.snakemake
+    match: (?<![\w.])\b(checkpoints)(?:\s*\.\s*({{legal-name}})(?:\s*\.\s*(get))?)?\b
+    captures:
+      "1": { name: entity.name.type.class.snakemake }
+      "2": { name: entity.name.variable.snakemake }
+      "3": { name: support.function.snakemake.get }
   objects:
-    name: meta.c
-    match: \b({{objects}})\b(?!\s*=)
+    name: meta.objects.snakemake
+    match: (?<![\w.])\b({{objects}})\b(?!\s*=)
     captures:
       "1": { name: entity.name.type.class.snakemake }
   job-params.variable:
     name: meta.args.snakemake
-    match: \b({{jobparams}})\s*\.\s*([A-Za-z_]+)\b(?!\s*=)
+    match: \b({{jobparams}})\s*\.\s*({{legal-name}})\b(?!\s*=)
     captures:
       "1": { name: constant.language.snakemake.job }
       "2": { name: entity.name.variable.snakemake }
@@ -38,6 +46,6 @@ repository:
     captures:
       "1": { name: constant.language.snakemake.job }
   functions:
-    match: \b({{functions}})\b(?!\s*=)
+    match: (?<![\w.])\b({{functions}})\b(?!\s*=)
     captures:
       "1": { name: support.function.builtin.snakemake }
