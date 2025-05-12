@@ -7,9 +7,7 @@ export function activate(context: vscode.ExtensionContext) {
     const snakemakeManager = new SnakemakeManager();
 
     context.subscriptions.push(
-        vscode.workspace.onDidChangeTextDocument(e => {
-            if (e.document.languageId.toLowerCase() === 'snakemake') snakemakeManager.update(e.document);
-        }),
+        vscode.workspace.onDidChangeTextDocument(snakemakeManager.onDocumentChange),
         registerShellHoverProvider(snakemakeManager)
     );
 
@@ -57,6 +55,19 @@ class SnakemakeManager {
     private blockMap = new Map<string, ShellBlock[]>();
     private symbolMap = new Map<string, vscode.DocumentSymbol[]>();
     private linkMap = new Map<string, vscode.DocumentLink[]>();
+    private updateTimeout = new Map<string, NodeJS.Timeout>();
+
+    onDocumentChange(event: vscode.TextDocumentChangeEvent) {
+        if (event.document.languageId.toLowerCase() !== 'snakemake') return;
+
+        if (this.updateTimeout.has(event.document.uri.toString())) {
+            clearTimeout(this.updateTimeout.get(event.document.uri.toString())!);
+        }
+        this.updateTimeout.set(event.document.uri.toString(), setTimeout(() => {
+            this.update(event.document);
+            this.updateTimeout.delete(event.document.uri.toString());
+        }, 200));
+    }
 
     update(document: vscode.TextDocument) {
         const blocks: ShellBlock[] = [];
@@ -73,10 +84,10 @@ class SnakemakeManager {
             shellBlock: { delimiter: "", content: [''] },
             blockStart: new vscode.Position(0, 0),
             current: { indent: 0, blockType: 'global' },
-        }
+        };
         state.shellBlock.content = [];
 
-        let regexMatch: RegExpExecArray | null
+        let regexMatch: RegExpExecArray | null;
 
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
