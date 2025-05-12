@@ -5,32 +5,31 @@ import * as fs from 'fs';
 
 export function activate(context: vscode.ExtensionContext) {
     const snakemakeManager = new SnakemakeManager();
+    const selector = { scheme: 'file', language: 'snakemake' }
 
     context.subscriptions.push(
         vscode.workspace.onDidChangeTextDocument(snakemakeManager.onDocumentChange),
-        registerShellHoverProvider(snakemakeManager)
-    );
+        vscode.languages.registerHoverProvider(selector, {
+            provideHover(document, position, token) {
+                const block = snakemakeManager.checkBlockAt(document, position);
+                if (!block) return;
 
-    context.subscriptions.push(
-        vscode.languages.registerDocumentSymbolProvider(
-            { language: 'snakemake' },
-            {
-                provideDocumentSymbols(document: vscode.TextDocument) {
-                    return snakemakeManager.getSymbols(document);
-                }
-            }
-        )
-    );
+                const md = new vscode.MarkdownString();
+                md.appendCodeblock(trimEmptyLines(block.content), 'shellscript');
 
-    context.subscriptions.push(
-        vscode.languages.registerDocumentLinkProvider(
-            { language: 'snakemake' },
-            {
-                provideDocumentLinks(document: vscode.TextDocument) {
-                    return snakemakeManager.getLinks(document);
-                }
+                return new vscode.Hover(md, block.range);
             }
-        )
+        }),
+        vscode.languages.registerDocumentSymbolProvider(selector, {
+            provideDocumentSymbols(document: vscode.TextDocument) {
+                return snakemakeManager.getSymbols(document);
+            }
+        }),
+        vscode.languages.registerDocumentLinkProvider(selector, {
+            provideDocumentLinks(document: vscode.TextDocument) {
+                return snakemakeManager.getLinks(document);
+            }
+        })
     );
 }
 
@@ -165,7 +164,6 @@ class SnakemakeManager {
                     state.blockStart = new vscode.Position(i, line.indexOf(state.shellBlock.delimiter) + state.shellBlock.delimiter.length);
                 }
                 this.pushAnyBlocks(blocks, state, i, line, state.blockStart.character);
-                continue;
             }
         }
     }
@@ -227,14 +225,11 @@ class SnakemakeManager {
         }
     }
 
-    checkDocument(document: vscode.TextDocument): boolean {
-        const blocks = this.blockMap.get(document.uri.toString());
-        if (!blocks) {
+    checkDocument(document: vscode.TextDocument) {
+        const documentNeedsUpdate = !this.blockMap.get(document.uri.toString());
+        if (documentNeedsUpdate) {
             this.update(document);
-            return !!this.blockMap.get(document.uri.toString());
         }
-        return false;
-
     }
 
     checkBlockAt(document: vscode.TextDocument, position: vscode.Position): ShellBlock | undefined {
@@ -255,20 +250,6 @@ class SnakemakeManager {
 
 }
 
-
-function registerShellHoverProvider(shellBlockManager: SnakemakeManager) {
-    return vscode.languages.registerHoverProvider({ scheme: 'file', language: 'snakemake' }, {
-        provideHover(document, position, token) {
-            const block = shellBlockManager.checkBlockAt(document, position);
-            if (!block) return;
-
-            const md = new vscode.MarkdownString();
-            md.appendCodeblock(trimEmptyLines(block.content), 'shellscript');
-
-            return new vscode.Hover(md, block.range);
-        }
-    });
-}
 
 function trimEmptyLines(block: string): string {
     const lines = block.split('\n');
