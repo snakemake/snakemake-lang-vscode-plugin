@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.6.1](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.6.0...v0.6.1) (2025-05-18)
+
+
+### Bug Fixes
+
+* exclude the `.snakemake` folder from the watcher and searches ([#41](https://github.com/snakemake/snakemake-lang-vscode-plugin/issues/41)) ([d15435c](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/d15435c3378d14c8640d4093eca4a36613226868))
+
 ## [0.6.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.5.2...v0.6.0) (2025-04-03)
 
 
