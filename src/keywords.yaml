@@ -97,7 +97,7 @@ objects:
   - scatter
   - gather
 
-ruleargs:
+jobparams:
   - input
   - output
   - params
@@ -141,3 +141,6 @@ functions:
   - parse_input
   - extract_checksum
   - flatten
+
+legal-name:
+  - "[A-Za-z_][A-Za-z0-9_]*"
