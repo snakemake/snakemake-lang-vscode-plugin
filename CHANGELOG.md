@@ -1,5 +1,17 @@
 # Change Log
 
+## [0.7.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.6.0...v0.7.0) (2025-06-11)
+
+
+### Features
+
+* add shell highlight hover, document symbol and link feature to snakemake ([#45](https://github.com/snakemake/snakemake-lang-vscode-plugin/issues/45)) ([2b1d256](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/2b1d2562db6e6c9aa5bb93b79aadac9c1730e8cf))
+
+
+### Bug Fixes
+
+* exclude the `.snakemake` folder from the watcher and searches ([#41](https://github.com/snakemake/snakemake-lang-vscode-plugin/issues/41)) ([d15435c](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/d15435c3378d14c8640d4093eca4a36613226868))
+
 ## [0.6.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.5.2...v0.6.0) (2025-04-03)
 
 
