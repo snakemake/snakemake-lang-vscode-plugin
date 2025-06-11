@@ -7,7 +7,7 @@ keywords = args[2];
 outfile = args[3];
 
 try {
-    const config = yaml.safeLoad(fs.readFileSync(keywords, 'utf8'));
+    const config = yaml.load(fs.readFileSync(keywords, 'utf8'));
     var results = {}
     for (var key in config) {
         results[key] = config[key].join("|")

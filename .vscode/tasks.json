@@ -2,29 +2,13 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "regex_build",
-            "command": "node src/js/build_regex.js src/keywords.yaml src/js/keywords-regex.json",
-            "type": "shell"
-        },
-        {
-            "label": "syntax_build",
-            "dependsOn": "regex_build",
-            "command": "npx mustache src/js/keywords-regex.json src/yaml/snakemake.syntax.yaml | npx js-yaml > syntaxes/snakemake.tmLanguage.json",
-            "type": "shell"
-        },
-        {
-            "label": "language_build",
-            "command": "npx js-yaml src/yaml/snakemake.language.yaml > languages/snakemake.json",
-            "type": "shell"
-        },
-        {
-            "label": "snippets_build",
-            "command": "npx js-yaml src/yaml/snakemake.snippets.yaml > snippets/snakemake.json",
-            "type": "shell"
-        },
-        {
             "label": "build",
-            "dependsOn": ["syntax_build", "language_build", "snippets_build"]
+            "type": "npm",
+            "script": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }

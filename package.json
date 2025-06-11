@@ -14,7 +14,8 @@
         "url": "https://github.com/snakemake/snakemake-lang-vscode-plugin/issues"
     },
     "engines": {
-        "vscode": "^1.53.0"
+        "vscode": "^1.75.0",
+        "node": ">=18"
     },
     "categories": [
         "Programming Languages"
@@ -50,6 +51,13 @@
                 "language": "snakemake",
                 "scopeName": "source.python.snakemake",
                 "path": "./syntaxes/snakemake.tmLanguage.json"
+            },
+            {
+                "scopeName": "source.python.snakemake.keywords",
+                "injectTo": [
+                    "source.python.snakemake"
+                ],
+                "path": "./syntaxes/snakemake-inject.tmLanguage.json"
             }
         ],
         "snippets": [
@@ -60,7 +68,25 @@
         ]
     },
     "devDependencies": {
+        "@types/node": "^14 || ^16 || ^18",
+        "@types/vscode": "^1.53.0",
+        "esbuild": "^0.25.2",
         "js-yaml": "^3.13.1",
         "mustache": "^3.1.0"
+    },
+    "main": "dist/extension.js",
+    "scripts": {
+        "clean": "rm -rf dist syntaxes languages snippets out",
+        "regex_build": "mkdir -p syntaxes && node src/js/build_regex.js src/keywords.yaml syntaxes/keywords-regex.json",
+        "syntax_build": "npm run regex_build && npx mustache syntaxes/keywords-regex.json src/yaml/snakemake.syntax.yaml | npx js-yaml > syntaxes/snakemake.tmLanguage.json",
+        "syntax_inject_build": "npm run regex_build && npx mustache syntaxes/keywords-regex.json src/yaml/snakemake-inject.syntax.yaml | npx js-yaml > syntaxes/snakemake-inject.tmLanguage.json",
+        "language_build": "mkdir -p languages && npx js-yaml src/yaml/snakemake.language.yaml > languages/snakemake.json",
+        "snippets_build": "mkdir -p snippets && npx js-yaml src/yaml/snakemake.snippets.yaml > snippets/snakemake.json",
+        "js_build": "node build.mjs",
+        "build": "npm run syntax_build && npm run syntax_inject_build && npm run language_build && npm run snippets_build && npm run js_build",
+        "watch": "tsc --watch",
+        "package": "vsce package",
+        "prepublish": "npm run build",
+        "publish": "vsce publish"
     }
 }
