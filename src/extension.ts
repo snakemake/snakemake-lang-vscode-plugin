@@ -8,7 +8,9 @@ export function activate(context: vscode.ExtensionContext) {
     const selector = { scheme: 'file', language: 'snakemake' }
 
     context.subscriptions.push(
-        vscode.workspace.onDidChangeTextDocument(snakemakeManager.onDocumentChange),
+        vscode.workspace.onDidChangeTextDocument((event) => snakemakeManager.onDocumentChange(event.document)),
+        vscode.workspace.onDidSaveTextDocument((document) => snakemakeManager.onDocumentChange(document)),
+        vscode.workspace.onDidOpenTextDocument((document) => snakemakeManager.onDocumentChange(document)),
         vscode.languages.registerHoverProvider(selector, {
             provideHover(document, position, token) {
                 const block = snakemakeManager.checkBlockAt(document, position);
@@ -50,21 +52,21 @@ const snakemakeRegex = {
     }
 }
 
-class SnakemakeManager {
+export class SnakemakeManager {
     private blockMap = new Map<string, ShellBlock[]>();
     private symbolMap = new Map<string, vscode.DocumentSymbol[]>();
     private linkMap = new Map<string, vscode.DocumentLink[]>();
     private updateTimeout = new Map<string, NodeJS.Timeout>();
 
-    onDocumentChange(event: vscode.TextDocumentChangeEvent) {
-        if (event.document.languageId.toLowerCase() !== 'snakemake') return;
+    onDocumentChange(document: vscode.TextDocument) {
+        if (document.languageId.toLowerCase() !== 'snakemake') return;
 
-        if (this.updateTimeout.has(event.document.uri.toString())) {
-            clearTimeout(this.updateTimeout.get(event.document.uri.toString())!);
+        if (this.updateTimeout.has(document.uri.toString())) {
+            clearTimeout(this.updateTimeout.get(document.uri.toString())!);
         }
-        this.updateTimeout.set(event.document.uri.toString(), setTimeout(() => {
-            this.update(event.document);
-            this.updateTimeout.delete(event.document.uri.toString());
+        this.updateTimeout.set(document.uri.toString(), setTimeout(() => {
+            this.update(document);
+            this.updateTimeout.delete(document.uri.toString());
         }, 200));
     }
 
