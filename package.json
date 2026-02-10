@@ -43,7 +43,11 @@
                     ".smk",
                     ".Snakefile"
                 ],
-                "configuration": "./languages/snakemake.json"
+                "configuration": "./languages/snakemake.json",
+                "icon": {
+                    "light": "./logo-snake.png",
+                    "dark": "./logo-snake.png"
+                }
             }
         ],
         "grammars": [
