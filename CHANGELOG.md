@@ -1,5 +1,17 @@
 # Change Log
 
+## [0.8.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.7.0...v0.8.0) (2026-03-11)
+
+
+### Features
+
+* set file icon ([#51](https://github.com/snakemake/snakemake-lang-vscode-plugin/issues/51)) ([314da3e](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/314da3e8ec5ae4752d2db68f8d41892023e00dae))
+
+
+### Bug Fixes
+
+* update via code change correctly ([#48](https://github.com/snakemake/snakemake-lang-vscode-plugin/issues/48)) ([8a08dc6](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/8a08dc6bfd2a9f4a5dffdc9fb8ecdc38bbe94b36))
+
 ## [0.7.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.6.0...v0.7.0) (2025-06-11)
 
 
