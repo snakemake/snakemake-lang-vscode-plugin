@@ -50,6 +50,20 @@ rule bar:
 `;
 
 // ---------------------------------------------------------------------------
+// Initial state: caches are empty before any update
+// ---------------------------------------------------------------------------
+
+test('getSymbols() returns empty array before any update', () => {
+    const manager = new SnakemakeManager();
+    assert.equal(manager.getSymbols(makeDoc(SAMPLE, 1) as any).length, 0);
+});
+
+test('getLinks() returns empty array before any update', () => {
+    const manager = new SnakemakeManager();
+    assert.equal(manager.getLinks(makeDoc(SAMPLE, 1) as any).length, 0);
+});
+
+// ---------------------------------------------------------------------------
 // Core invariant: getSymbols / getLinks never trigger update()
 // ---------------------------------------------------------------------------
 
@@ -72,10 +86,10 @@ test('getLinks() never triggers update()', () => {
 });
 
 // ---------------------------------------------------------------------------
-// checkBlockAt: sync parse only on first access per document
+// checkBlockAt: pure cache read, never triggers update()
 // ---------------------------------------------------------------------------
 
-test('checkBlockAt() triggers update() on first access, not on subsequent calls', () => {
+test('checkBlockAt() never triggers update()', () => {
     const manager = new TrackedManager();
     const doc = makeDoc(SAMPLE, 1);
 
@@ -83,24 +97,25 @@ test('checkBlockAt() triggers update() on first access, not on subsequent calls'
     manager.checkBlockAt(doc as any, POS as any);
     manager.checkBlockAt(doc as any, POS as any);
 
-    assert.equal(manager.updateCount, 1);
+    assert.equal(manager.updateCount, 0);
 });
 
-test('checkBlockAt() does not re-parse when version changes (stale data is acceptable)', () => {
-    const manager = new TrackedManager();
-    // First access parses v1.
-    manager.checkBlockAt(makeDoc(SAMPLE, 1) as any, POS as any);
-    // Version changed, but no re-parse – debounce handles this.
-    manager.checkBlockAt(makeDoc(SAMPLE, 2) as any, POS as any);
-
-    assert.equal(manager.updateCount, 1);
+test('checkBlockAt() returns undefined before any update', () => {
+    const manager = new SnakemakeManager();
+    const result = manager.checkBlockAt(makeDoc(SAMPLE, 1) as any, POS as any);
+    assert.equal(result, undefined);
 });
 
-test('checkBlockAt() parses each new document URI independently', () => {
-    const manager = new TrackedManager();
-    manager.checkBlockAt(makeDoc(SAMPLE, 1, 'file:///a.smk') as any, POS as any);
-    manager.checkBlockAt(makeDoc(SAMPLE, 1, 'file:///b.smk') as any, POS as any);
-    assert.equal(manager.updateCount, 2);
+test('checkBlockAt() returns correct block after debounce-triggered update', async () => {
+    const manager = new SnakemakeManager();
+    const doc = makeDoc(SAMPLE, 1);
+
+    manager.onDocumentChange(doc as any);
+    await new Promise(resolve => setTimeout(resolve, 250));
+
+    // Position inside the shell block of rule foo (line 5, inside the """)
+    const block = manager.checkBlockAt(doc as any, { line: 5, character: 0 } as any);
+    assert.ok(block !== undefined);
 });
 
 // ---------------------------------------------------------------------------
@@ -159,15 +174,15 @@ test('onDocumentChange() populates symbols after debounce fires', async () => {
     assert.equal(manager.getSymbols(doc as any).length, 2);
 });
 
-test('debounced update skips when version was already parsed by checkBlockAt()', async () => {
+test('debounced update skips when version was already parsed', async () => {
     const manager = new TrackedManager();
     const doc = makeDoc(SAMPLE, 1);
 
-    // Hover forces a sync parse on first access.
-    manager.checkBlockAt(doc as any, POS as any);
+    // Direct update records the version (simulates a prior debounce firing).
+    manager.update(doc as any);
     assert.equal(manager.updateCount, 1);
 
-    // VS Code also fires onDocumentChange for the same version.
+    // onDocumentChange fires for the same version.
     manager.onDocumentChange(doc as any);
     await new Promise(resolve => setTimeout(resolve, 250));
 
