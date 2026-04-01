@@ -91,6 +91,7 @@
         "watch": "tsc --watch",
         "package": "vsce package",
         "prepublish": "npm run build",
-        "publish": "vsce publish"
+        "publish": "vsce publish",
+        "test:unit": "node build-test.mjs && node --test dist/test/snakemake-manager.test.js"
     }
 }

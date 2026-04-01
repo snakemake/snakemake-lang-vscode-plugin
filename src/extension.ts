@@ -56,27 +56,33 @@ export class SnakemakeManager {
     private blockMap = new Map<string, ShellBlock[]>();
     private symbolMap = new Map<string, vscode.DocumentSymbol[]>();
     private linkMap = new Map<string, vscode.DocumentLink[]>();
+    private versionMap = new Map<string, number>();
     private updateTimeout = new Map<string, NodeJS.Timeout>();
 
     onDocumentChange(document: vscode.TextDocument) {
         if (document.languageId.toLowerCase() !== 'snakemake') return;
 
-        if (this.updateTimeout.has(document.uri.toString())) {
-            clearTimeout(this.updateTimeout.get(document.uri.toString())!);
+        const key = document.uri.toString();
+        if (this.updateTimeout.has(key)) {
+            clearTimeout(this.updateTimeout.get(key)!);
         }
-        this.updateTimeout.set(document.uri.toString(), setTimeout(() => {
-            this.update(document);
-            this.updateTimeout.delete(document.uri.toString());
+        this.updateTimeout.set(key, setTimeout(() => {
+            if (this.versionMap.get(key) !== document.version) {
+                this.update(document);
+            }
+            this.updateTimeout.delete(key);
         }, 200));
     }
 
     update(document: vscode.TextDocument) {
+        const key = document.uri.toString();
         const blocks: ShellBlock[] = [];
         const symbols: vscode.DocumentSymbol[] = [];
         const links: vscode.DocumentLink[] = [];
-        this.blockMap.set(document.uri.toString(), blocks);
-        this.symbolMap.set(document.uri.toString(), symbols);
-        this.linkMap.set(document.uri.toString(), links);
+        this.blockMap.set(key, blocks);
+        this.symbolMap.set(key, symbols);
+        this.linkMap.set(key, links);
+        this.versionMap.set(key, document.version);
 
         const text = document.getText();
         const lines = text.split('\n');
@@ -228,8 +234,8 @@ export class SnakemakeManager {
     }
 
     checkDocument(document: vscode.TextDocument) {
-        const documentNeedsUpdate = !this.blockMap.get(document.uri.toString());
-        if (documentNeedsUpdate) {
+        const key = document.uri.toString();
+        if (this.versionMap.get(key) !== document.version) {
             this.update(document);
         }
     }
