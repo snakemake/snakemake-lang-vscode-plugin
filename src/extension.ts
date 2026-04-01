@@ -244,26 +244,18 @@ export class SnakemakeManager {
         }
     }
 
-    checkDocument(document: vscode.TextDocument) {
-        const key = document.uri.toString();
-        if (this.versionMap.get(key) !== document.version) {
-            this.update(document);
-        }
-    }
-
     checkBlockAt(document: vscode.TextDocument, position: vscode.Position): ShellBlock | undefined {
-        this.checkDocument(document);
         const blocks = this.blockMap.get(document.uri.toString()) ?? [];
         return blocks.find(b => b.range.contains(position));
     }
 
     getSymbols(document: vscode.TextDocument): vscode.DocumentSymbol[] {
-        this.checkDocument(document);
+        // Never trigger a synchronous parse. VS Code calls this on every
+        // keystroke; updates arrive via the debounced onDocumentChange path.
         return this.symbolMap.get(document.uri.toString()) || [];
     }
 
     getLinks(document: vscode.TextDocument): vscode.DocumentLink[] {
-        this.checkDocument(document);
         return this.linkMap.get(document.uri.toString()) || [];
     }
 
