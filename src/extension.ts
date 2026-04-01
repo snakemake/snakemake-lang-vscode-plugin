@@ -11,6 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.workspace.onDidChangeTextDocument((event) => snakemakeManager.onDocumentChange(event.document)),
         vscode.workspace.onDidSaveTextDocument((document) => snakemakeManager.onDocumentChange(document)),
         vscode.workspace.onDidOpenTextDocument((document) => snakemakeManager.onDocumentChange(document)),
+        vscode.workspace.onDidCloseTextDocument((document) => snakemakeManager.onDocumentClose(document)),
         vscode.languages.registerHoverProvider(selector, {
             provideHover(document, position, token) {
                 const block = snakemakeManager.checkBlockAt(document, position);
@@ -58,6 +59,16 @@ export class SnakemakeManager {
     private linkMap = new Map<string, vscode.DocumentLink[]>();
     private versionMap = new Map<string, number>();
     private updateTimeout = new Map<string, NodeJS.Timeout>();
+
+    onDocumentClose(document: vscode.TextDocument) {
+        const key = document.uri.toString();
+        clearTimeout(this.updateTimeout.get(key));
+        this.updateTimeout.delete(key);
+        this.blockMap.delete(key);
+        this.symbolMap.delete(key);
+        this.linkMap.delete(key);
+        this.versionMap.delete(key);
+    }
 
     onDocumentChange(document: vscode.TextDocument) {
         if (document.languageId.toLowerCase() !== 'snakemake') return;

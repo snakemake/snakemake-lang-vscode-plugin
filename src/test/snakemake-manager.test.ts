@@ -14,8 +14,9 @@ interface MockDocument {
 }
 
 function makeDoc(text: string, version: number, uri = 'file:///test.smk'): MockDocument {
+    const fsPath = uri.replace(/^file:\/\//, '');
     return {
-        uri: { toString: () => uri, fsPath: '/test.smk' },
+        uri: { toString: () => uri, fsPath },
         getText: () => text,
         version,
         languageId: 'snakemake',

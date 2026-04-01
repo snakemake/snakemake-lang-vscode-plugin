@@ -11,12 +11,12 @@ export class Range {
     readonly start: Position;
     readonly end: Position;
 
-    constructor(startOrLine: Position | number, endOrChar: Position | number, endLine?: number, endChar?: number) {
+    constructor(startOrLine: Position | number, endOrStartChar: Position | number, endLine?: number, endChar?: number) {
         if (startOrLine instanceof Position) {
             this.start = startOrLine;
-            this.end = endOrChar as Position;
+            this.end = endOrStartChar as Position;
         } else {
-            this.start = new Position(startOrLine as number, endOrChar as number);
+            this.start = new Position(startOrLine as number, endOrStartChar as number);
             this.end = new Position(endLine!, endChar!);
         }
     }
