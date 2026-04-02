@@ -19,5 +19,7 @@ jobs:
         with:
           node-version: '18.x'
 
-      - run:
-          npm install && npm ci
+      - run: npm ci
+
+      - name: Run unit tests
+        run: npm run test:unit
