@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.8.1](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.8.0...v0.8.1) (2026-04-02)
+
+
+### Bug Fixes
+
+* Extension causes high cpu load ([#53](https://github.com/snakemake/snakemake-lang-vscode-plugin/issues/53)) ([1925385](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/19253855fe8ba6755817a2de5303333fef80c290))
+
 ## [0.8.0](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.7.0...v0.8.0) (2026-03-11)
 
 
