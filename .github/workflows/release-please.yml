@@ -8,6 +8,8 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
@@ -15,32 +17,31 @@ jobs:
           release-type: node
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v4
-        if: ${{ steps.release.outputs.release_created }}
+  publish:
+    runs-on: ubuntu-latest
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created }}
+    steps:
+      - uses: actions/checkout@v6
 
       - uses: actions/setup-node@v4
-        if: ${{ steps.release.outputs.release_created }}
         with:
           node-version: 18
 
       - name: Install dependencies
-        if: ${{ steps.release.outputs.release_created }}
         run:
           npm install && npm ci
 
       - name: Build extension
-        if: ${{ steps.release.outputs.release_created }}
         run: npm run build
 
       - name: Publish to Visual Studio Marketplace
-        if: ${{ steps.release.outputs.release_created }}
         uses: HaaLeo/publish-vscode-extension@v1
         with:
           pat: ${{ secrets.VSCODE_MARKETPLACE_TOKEN }}
           registryUrl: https://marketplace.visualstudio.com
 
       - name: Publish to Open VSX Registry
-        if: ${{ steps.release.outputs.release_created }}
         uses: HaaLeo/publish-vscode-extension@v1
         with:
           pat: ${{ secrets.OPEN_VSX_TOKEN }}
