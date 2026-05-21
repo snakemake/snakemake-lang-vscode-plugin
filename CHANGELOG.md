@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.8.2](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.8.1...v0.8.2) (2026-05-21)
+
+
+### Bug Fixes
+
+* split release github workflow ([86afbcf](https://github.com/snakemake/snakemake-lang-vscode-plugin/commit/86afbcf7a14ea2aa5d76256383c01a942a2efd0d))
+
 ## [0.8.1](https://github.com/snakemake/snakemake-lang-vscode-plugin/compare/v0.8.0...v0.8.1) (2026-04-02)
 
 
